@@ -62,28 +62,18 @@
 
 #### 主要模块
 
-| 目录                     | 功能描述                           |
-|------------------------|--------------------------------|
-| `src/api`              | API 接口封装，如 `user.js` 定义用户相关的请求 |
-| `src/assets/css`       | 全局样式文件和 SCSS 变量                |
-| `src/router/index.js`  | Vue 路由配置                       |
-| `src/utils/request.js` | 封装 Axios 请求                    |
-| `src/views/`           | 页面组件目录，包括：                     |
-
-- `Login.vue` 登录页  
-  - `Register.vue` 注册页  
-  - `Home.vue` 主页  
-  - `User.vue` 用户管理  
-  - `Admin.vue` 管理员管理  
-  - `UpdatePassword.vue` 修改密码  
-  - `Person.vue` 个人信息  
-  - `Manager.vue` 管理界面  
-  - `404.vue` 错误页面 |
-| `App.vue`           | 根组件 |
-| `main.js`           | Vue 入口文件 |
-| `index.html`        | HTML 模板 |
-| `package.json`      | npm 包配置 |
-| `vite.config.js`    | Vite 构建配置 |
+| 目录                     | 功能描述                                                                                                                                                                                                                                       |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `src/api`              | API 接口封装，如 `user.js` 定义用户相关的请求                                                                                                                                                                                                             |
+| `src/assets/css`       | 全局样式文件和 SCSS 变量                                                                                                                                                                                                                            |
+| `src/router/index.js`  | Vue 路由配置                                                                                                                                                                                                                                   |
+| `src/utils/request.js` | 封装 Axios 请求                                                                                                                                                                                                                                |
+| `src/views/`           | 页面组件目录，包括： <br> - `Login.vue` 登录页 <br> - `Register.vue` 注册页 <br> - `Home.vue` 主页 <br> - `User.vue` 用户管理 <br> - `Admin.vue` 管理员管理 <br> - `UpdatePassword.vue` 修改密码 <br> - `Person.vue` 个人信息 <br> - `Manager.vue` 管理界面 <br> - `404.vue` 错误页面 |
+| `App.vue`              | 根组件                                                                                                                                                                                                                                        |
+| `main.js`              | Vue 入口文件                                                                                                                                                                                                                                   |
+| `index.html`           | HTML 模板                                                                                                                                                                                                                                    |
+| `package.json`         | npm 包配置                                                                                                                                                                                                                                    |
+| `vite.config.js`       | Vite 构建配置                                                                                                                                                                                                                                  |
 
 ---
 
