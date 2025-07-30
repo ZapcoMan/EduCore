@@ -1,7 +1,7 @@
 package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
-import com.example.common.R;
+import com.example.common.result.R;
 import com.example.modules.system.entity.Account;
 import com.example.enums.RoleEnum;
 import com.example.strategy.Context.RoleStrategyContext;

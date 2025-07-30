@@ -1,4 +1,4 @@
-package com.example.common;
+package com.example.common.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

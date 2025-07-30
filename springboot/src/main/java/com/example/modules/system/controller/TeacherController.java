@@ -2,7 +2,7 @@ package com.example.modules.system.controller;
 
 
 import com.example.common.annotation.AuditLogRecord;
-import com.example.common.R;
+import com.example.common.result.R;
 import com.example.modules.system.entity.Teacher;
 import com.example.modules.system.service.TeacherService;
 import io.swagger.annotations.ApiOperation;

@@ -1,6 +1,6 @@
 package com.example.common.exception;
 
-import com.example.common.ResultCodeEnum;
+import com.example.common.result.ResultCodeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

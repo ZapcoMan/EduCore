@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Dict;
 import com.example.common.annotation.AuditLogRecord;
-import com.example.common.R;
+import com.example.common.result.R;
 import com.example.common.exception.CustomerException;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.ServletOutputStream;

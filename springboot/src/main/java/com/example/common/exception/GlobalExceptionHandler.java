@@ -1,6 +1,6 @@
 package com.example.common.exception;
 
-import com.example.common.R;
+import com.example.common.result.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
