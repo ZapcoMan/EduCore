@@ -2,6 +2,7 @@ package com.example.modules.system.mapper;
 
 import com.example.modules.system.entity.Admin;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * AdminMapper接口定义了管理员数据访问层的方法
  * 这些方法用于对管理员表进行基本的CRUD操作
  */
+@Mapper
 public interface AdminMapper {
 
     /**
