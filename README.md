@@ -2,7 +2,8 @@
 
 ## 项目概述
 
-本系统是一个基于 **Spring Boot + Vue** 构建的前后端分离的 EduCore 教务管理系统。后端使用 **Java 17+** 编写，采用 **Spring Boot** 框架；前端使用 **Vue 3 + Vite** 开发，UI 支持响应式布局；数据库使用 **MySQL**。
+本系统是一个基于 **Spring Boot + Vue** 构建的前后端分离的 EduCore 教务管理系统。后端使用 **Java 17+** 编写，采用 **Spring
+Boot** 框架；前端使用 **Vue 3 + Vite** 开发，UI 支持响应式布局；数据库使用 **MySQL**。
 
 系统实现了完整的用户管理、成绩管理、通知公告、操作日志记录等功能，并引入了以下增强特性：
 
@@ -23,30 +24,179 @@
 - [功能列表](#功能列表)
 - [数据库设计](#数据库设计)
 - [开发部署指南](#开发部署指南)
+
 ## 项目结构
+
+~~~
+grade-system/
+├── springboot/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/
+│   │   │   │   ├── SpringbootApplication.java
+│   │   │   │   ├── common/
+│   │   │   │   │   ├── R.java
+│   │   │   │   │   ├── ResultCodeEnum.java
+│   │   │   │   │   ├── annotation/
+│   │   │   │   │   │   └── AuditLogRecord.java
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   ├── CorsConfig.java
+│   │   │   │   │   │   ├── JacksonConfig.java
+│   │   │   │   │   │   ├── RedisConfig.java
+│   │   │   │   │   │   └── SecurityConfig.java
+│   │   │   │   │   ├── exception/
+│   │   │   │   │   │   ├── CustomerException.java
+│   │   │   │   │   │   └── GlobalExceptionHandler.java
+│   │   │   │   │   ├── utils/
+│   │   │   │   │   │   ├── MixUtils.java
+│   │   │   │   │   │   └── TokenUtils.java
+│   │   │   │   ├── enums/
+│   │   │   │   │   └── RoleEnum.java
+│   │   │   │   ├── log/
+│   │   │   │   │   └── aspect/
+│   │   │   │   │       └── AuditLogAspect.java
+│   │   │   │   ├── modules/
+│   │   │   │   │   └── system/
+│   │   │   │   │       ├── controller/
+│   │   │   │   │       │   ├── AdminController.java
+│   │   │   │   │       │   ├── AuditLogController.java
+│   │   │   │   │       │   ├── CourseController.java
+│   │   │   │   │       │   ├── FileController.java
+│   │   │   │   │       │   ├── LoginQrCodeController.java
+│   │   │   │   │       │   ├── NotificationController.java
+│   │   │   │   │       │   ├── ScoreController.java
+│   │   │   │   │       │   ├── StudentController.java
+│   │   │   │   │       │   ├── TeacherController.java
+│   │   │   │   │       │   ├── UserController.java
+│   │   │   │   │       │   └── WebController.java
+│   │   │   │   │       ├── dto/
+│   │   │   │   │       │   └── ConfirmDto.java
+│   │   │   │   │       ├── entity/
+│   │   │   │   │       │   ├── Account.java
+│   │   │   │   │       │   ├── Admin.java
+│   │   │   │   │       │   ├── AuditLog.java
+│   │   │   │   │       │   ├── Course.java
+│   │   │   │   │       │   ├── Notification.java
+│   │   │   │   │       │   ├── Score.java
+│   │   │   │   │       │   ├── Student.java
+│   │   │   │   │       │   ├── Teacher.java
+│   │   │   │   │       │   └── User.java
+│   │   │   │   │       ├── mapper/
+│   │   │   │   │       │   ├── AdminMapper.java
+│   │   │   │   │       │   ├── CourseMapper.java
+│   │   │   │   │       │   ├── ScoreMapper.java
+│   │   │   │   │       │   ├── StudentMapper.java
+│   │   │   │   │       │   ├── TeacherMapper.java
+│   │   │   │   │       │   ├── UserMapper.java
+│   │   │   │   │       │   └── ... (其他Mapper)
+│   │   │   │   │       └── service/
+│   │   │   │   │           ├── AdminService.java
+│   │   │   │   │           ├── CourseService.java
+│   │   │   │   │           ├── ScoreService.java
+│   │   │   │   │           ├── StudentService.java
+│   │   │   │   │           ├── TeacherService.java
+│   │   │   │   │           ├── UserService.java
+│   │   │   │   │           └── impl/
+│   │   │   │   │               ├── AdminServiceImpl.java
+│   │   │   │   │               ├── CourseServiceImpl.java
+│   │   │   │   │               ├── ScoreServiceImpl.java
+│   │   │   │   │               ├── StudentServiceImpl.java
+│   │   │   │   │               ├── TeacherServiceImpl.java
+│   │   │   │   │               └── UserServiceImpl.java
+│   │   │   │   ├── security/
+│   │   │   │   │   └── JwtAuthenticationFilter.java
+│   │   │   │   └── strategy/
+│   │   │   │       ├── Context/
+│   │   │   │       │   └── RoleStrategyContext.java
+│   │   │   │       ├── RoleStrategy.java
+│   │   │   │       └── impl/
+│   │   │   │           ├── AdminStrategy.java
+│   │   │   │           ├── TeacherStrategy.java
+│   │   │   │           └── UserStrategy.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── mapper/
+│   │   │           ├── AdminMapper.xml
+│   │   │           ├── CourseMapper.xml
+│   │   │           ├── ScoreMapper.xml
+│   │   │           ├── StudentMapper.xml
+│   │   │           ├── TeacherMapper.xml
+│   │   │           └── UserMapper.xml
+│   │   └── test/
+│   ├── pom.xml
+│   └── target/
+├── vue/
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   ├── jsconfig.json
+│   ├── .env
+│   ├── .env.production
+│   ├── public/
+│   └── src/
+│       ├── main.js
+│       ├── App.vue
+│       ├── api/
+│       │   └── user.js
+│       ├── assets/
+│       │   ├── css/
+│       │   │   ├── global.css
+│       │   │   └── index.scss
+│       │   └── images/
+│       ├── components/
+│       ├── router/
+│       │   └── index.js
+│       ├── utils/
+│       │   └── request.js
+│       └── views/
+│           ├── 404.vue
+│           ├── Admin.vue
+│           ├── Course.vue
+│           ├── Home.vue
+│           ├── Login.vue
+│           ├── Manager.vue
+│           ├── Person.vue
+│           ├── QrConfirm.vue
+│           ├── Register.vue
+│           ├── Score.vue
+│           ├── Teacher.vue
+│           ├── UpdatePassword.vue
+│           └── User.vue
+├── sql/
+│   └── learnscore.sql
+├── files/
+├── .git/
+├── .gitignore
+├── .idea/
+└── README.md
+
+~~~
 
 ### 后端 (`springboot`)
 
 #### 主要模块
 
-| 包名 | 功能描述 |
-|------|---------|
-| `common` | 通用类，包括返回结果封装、注解、配置、异常处理、工具类等 |
-| `common.annotation` | 自定义注解，如 [@AuditLogRecord](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\annotation\AuditLogRecord.java#L15-L20) 用于标记需要记录日志的方法 |
-| `common.config` | 系统配置类，如跨域配置、拦截器、Jackson 序列化配置等 |
-| `common.exception` | 异常处理类，包括自定义异常和全局异常处理器 |
-| `common.utils` | 工具类，如 [TokenUtils](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\utils\TokenUtils.java#L21-L80) 处理 JWT 令牌 |
-| `enums` | 枚举类，如角色枚举等 |
-| `log.aspect` | 切面类，如 [AuditLogAspect](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\log\aspect\AuditLogAspect.java#L23-L72) 实现操作日志记录逻辑 |
-| `modules.system.controller` | 控制器类，处理 HTTP 请求 |
-| `modules.system.dto` | 数据传输对象，用于接收请求参数 |
-| `modules.system.entity` | 实体类，与数据库表一一映射 |
-| `modules.system.mapper` | MyBatis 映射接口，用于数据库操作 |
-| `modules.system.service` | 业务逻辑接口及其实现类 |
-| `security` | 安全相关类，如 JWT 过滤器、鉴权逻辑 |
-| `strategy` | 策略模式实现的扩展逻辑 |
-| `SpringbootApplication.java` | Spring Boot 启动类 |
-                                                                                                            | Spring Boot 启动类                                                                                                                                                                                                                                                                                   |
+| 包名                           | 功能描述                                                                                                                                                                    |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `common`                     | 通用类，包括返回结果封装、注解、配置、异常处理、工具类等                                                                                                                                            |
+| `common.annotation`          | 自定义注解，如 [@AuditLogRecord](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\annotation\AuditLogRecord.java#L15-L20) 用于标记需要记录日志的方法 |
+| `common.config`              | 系统配置类，如跨域配置、拦截器、Jackson 序列化配置等                                                                                                                                          |
+| `common.exception`           | 异常处理类，包括自定义异常和全局异常处理器                                                                                                                                                   |
+| `common.utils`               | 工具类，如 [TokenUtils](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\utils\TokenUtils.java#L21-L80) 处理 JWT 令牌                     |
+| `enums`                      | 枚举类，如角色枚举等                                                                                                                                                              |
+| `log.aspect`                 | 切面类，如 [AuditLogAspect](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\log\aspect\AuditLogAspect.java#L23-L72) 实现操作日志记录逻辑       |
+| `modules.system.controller`  | 控制器类，处理 HTTP 请求                                                                                                                                                         |
+| `modules.system.dto`         | 数据传输对象，用于接收请求参数                                                                                                                                                         |
+| `modules.system.entity`      | 实体类，与数据库表一一映射                                                                                                                                                           |
+| `modules.system.mapper`      | MyBatis 映射接口，用于数据库操作                                                                                                                                                    |
+| `modules.system.service`     | 业务逻辑接口及其实现类                                                                                                                                                             |
+| `security`                   | 安全相关类，如 JWT 过滤器、鉴权逻辑                                                                                                                                                    |
+| `strategy`                   | 策略模式实现的扩展逻辑                                                                                                                                                             |
+| `strategy.Context`           | 策略上下文类                                                                                                                                                                  |
+| `strategy.impl`              | 策略具体实现类                                                                                                                                                                 |
+| `SpringbootApplication.java` | Spring Boot 启动类                                                                                                                                                         |
+|
 
 #### 配置文件
 
