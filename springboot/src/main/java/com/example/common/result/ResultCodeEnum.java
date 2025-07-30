@@ -30,11 +30,11 @@ public enum ResultCodeEnum {
     HTTP_CLIENT_ERROR(false,20004,"客户端错误");
 
     // 成功状态标识
-    private Boolean success;
+    private final Boolean success;
     // 响应码
-    private Integer code;
+    private final Integer code;
     // 响应消息
-    private String message;
+    private final String message;
 
     /**
      * 构造函数，初始化响应码的属性
