@@ -1,9 +1,9 @@
 package com.example.strategy.impl;
 
-import com.example.entity.Account;
-import com.example.entity.User;
+import com.example.modules.system.entity.Account;
+import com.example.modules.system.entity.User;
 import com.example.enums.RoleEnum;
-import com.example.service.UserService;
+import com.example.modules.system.service.UserService;
 import com.example.strategy.RoleStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

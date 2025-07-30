@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.mapper.ScoreMapper">
+<mapper namespace="com.example.modules.system.mapper.ScoreMapper">
 
-    <resultMap id="ScoreResultMap" type="com.example.entity.Score">
+    <resultMap id="ScoreResultMap" type="com.example.modules.system.entity.Score">
         <id property="id" column="id"/>
         <result property="studentId" column="student_id"/>
         <result property="courseId" column="course_id"/>
@@ -20,12 +20,12 @@
         SELECT * FROM score
     </select>
 
-    <insert id="insert" parameterType="com.example.entity.Score" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.example.modules.system.entity.Score" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO score (student_id, course_id, score)
         VALUES (#{studentId}, #{courseId}, #{score})
     </insert>
 
-    <update id="update" parameterType="com.example.entity.Score">
+    <update id="update" parameterType="com.example.modules.system.entity.Score">
         UPDATE score SET
                          student_id = #{studentId},
                          course_id = #{courseId},

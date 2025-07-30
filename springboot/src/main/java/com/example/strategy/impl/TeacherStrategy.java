@@ -1,8 +1,8 @@
 package com.example.strategy.impl;
 
-import com.example.entity.Account;
+import com.example.modules.system.entity.Account;
 import com.example.enums.RoleEnum;
-import com.example.service.UserService;
+import com.example.modules.system.service.UserService;
 import com.example.strategy.RoleStrategy;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

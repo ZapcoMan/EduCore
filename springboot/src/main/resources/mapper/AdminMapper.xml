@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 定义一个Mapper，命名空间为com.example.mapper.AdminMapper -->
-<mapper namespace="com.example.mapper.AdminMapper">
+<mapper namespace="com.example.modules.system.mapper.AdminMapper">
 
     <!-- 定义一个查询操作，ID为selectAll，返回类型为com.example.entity.Admin -->
-    <select id="selectAll" resultType="com.example.entity.Admin">
+    <select id="selectAll" resultType="com.example.modules.system.entity.Admin">
         <!-- 查询admin表中的所有列，并根据条件进行筛选 -->
         select * from `admin`
         <where>

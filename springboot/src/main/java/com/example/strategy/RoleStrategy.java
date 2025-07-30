@@ -1,6 +1,6 @@
 package com.example.strategy;
 
-import com.example.entity.Account;
+import com.example.modules.system.entity.Account;
 
 public interface RoleStrategy {
     String getRole(); // 返回角色标识，如 ADMIN、USER、TEACHER

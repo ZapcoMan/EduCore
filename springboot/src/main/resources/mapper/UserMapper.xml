@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 定义一个Mapper，命名空间为com.example.mapper.UserMapper -->
-<mapper namespace="com.example.mapper.UserMapper">
+<mapper namespace="com.example.modules.system.mapper.UserMapper">
 
     <!-- 定义一个查询方法，id为selectAll，返回类型为com.example.entity.User -->
-    <select id="selectAll" resultType="com.example.entity.User">
+    <select id="selectAll" resultType="com.example.modules.system.entity.User">
         <!-- 查询user表中的所有列 -->
         select * from `user`
         <!-- 动态生成where条件 -->

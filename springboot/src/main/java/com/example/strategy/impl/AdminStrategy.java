@@ -1,8 +1,8 @@
 package com.example.strategy.impl;
 
-import com.example.entity.Account;
+import com.example.modules.system.entity.Account;
 import com.example.enums.RoleEnum;
-import com.example.service.AdminService;
+import com.example.modules.system.service.AdminService;
 import com.example.strategy.RoleStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
