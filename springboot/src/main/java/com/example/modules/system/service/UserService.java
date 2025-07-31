@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 用户服务接口，定义了对用户信息进行增删查改及相关操作的方法
  */
-public interface UserService {
+public interface UserService extends BaseService<User, Integer>{
     /**
      * 添加新用户
      *
