@@ -59,4 +59,32 @@ public interface StudentMapper {
      * @return 返回对应用户ID的学生对象，如果找不到则返回null
      */
     Student findByUserId(Long userId);
+
+
+    /**
+     * 根据学生ID查询学生信息
+     *
+     * @param id 学生的唯一标识符
+     * @return 返回对应ID的学生对象
+     */
+    Student selectById(Long id);
+
+    /**
+     * 查询所有学生列表
+     *
+     * @return 包含所有学生对象的列表
+     */
+    List<Student> selectAll();
+
+
+    /**
+     * 根据学生ID更新学生信息
+     *
+     * @param student 包含更新信息的学生对象
+     */
+    void updateById(Student student);
+
 }
+
+
+
