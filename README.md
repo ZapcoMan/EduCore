@@ -28,7 +28,7 @@
 
 
 ~~~
-grade-system/
+EduCore/
 ├── springboot/
 │   ├── src/
 │   │   ├── main/
