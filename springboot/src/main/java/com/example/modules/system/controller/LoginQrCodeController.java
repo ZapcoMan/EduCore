@@ -7,6 +7,7 @@ import com.example.common.result.R;
 import com.example.modules.system.dto.ConfirmDto;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.service.AccountService;
+import io.swagger.annotations.ApiOperation;
 import jakarta.annotation.Resource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,6 +37,7 @@ public class LoginQrCodeController {
      *
      * @return 返回包含UUID的响应结果
      */
+    @ApiOperation("生成登录二维码")
     @GetMapping("/generate")
     public R generateQrCode() {
         // 生成唯一标识符
@@ -54,6 +56,7 @@ public class LoginQrCodeController {
      * @param uuid 二维码唯一标识符
      * @return 返回包含二维码状态信息的响应结果
      */
+    @ApiOperation("检查二维码状态")
     @GetMapping("/status/{uuid}")
     public R checkStatus(@PathVariable String uuid) {
         String key = "login:uuid:" + uuid;
@@ -70,6 +73,7 @@ public class LoginQrCodeController {
      * @param dto 包含登录信息的数据传输对象，包括uuid、用户名、密码和角色
      * @return 返回登录结果，成功时返回包含用户信息和token的响应，失败时返回错误信息
      */
+    @ApiOperation("手机扫码确认登录")
     @PostMapping("/confirm")
     public R confirmLogin(@RequestBody ConfirmDto dto) {
         log.info("确认登录：" + dto);
