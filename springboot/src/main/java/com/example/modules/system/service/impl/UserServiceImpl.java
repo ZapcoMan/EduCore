@@ -2,12 +2,12 @@ package com.example.modules.system.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
+import com.example.common.exception.CustomerException;
+import com.example.common.utils.TokenUtils;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.entity.User;
-import com.example.common.exception.CustomerException;
 import com.example.modules.system.mapper.UserMapper;
 import com.example.modules.system.service.UserService;
-import com.example.common.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
@@ -18,12 +18,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> implements UserService {
 
     @Resource
     UserMapper userMapper;
     // 日志对象，用于记录系统日志
     private static final Log log = LogFactory.getLog(UserServiceImpl.class);
+
+    public UserServiceImpl(UserMapper mapper) {
+        super(mapper);
+    }
 
     /**
      * 添加新用户
@@ -84,6 +88,31 @@ public class UserServiceImpl implements UserService {
             this.deleteById(user.getId());
         }
     }
+
+
+    /**
+     * 根据Long类型ID查询用户信息
+     *
+     * @param id 用户ID
+     * @return 用户对象，如果找到匹配的用户则返回用户信息，否则返回null
+     */
+    @Override
+    public User selectById(Long id) {
+        return userMapper.selectById(id);
+    }
+
+
+    /**
+     * 根据Integer类型ID查询用户信息
+     *
+     * @param id 用户ID
+     * @return 用户对象，如果找到匹配的用户则返回用户信息，否则返回null
+     */
+    @Override
+    public User selectById(Integer id) {
+        return null;
+    }
+
 
     /**
      * 查询所有用户
@@ -204,9 +233,37 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * 插入用户信息
+     *
+     * @param user 要插入的用户对象
+     */
     @Override
     public void insert(User user) {
         userMapper.insert(user);
     }
+
+
+    /**
+     * 根据ID更新用户信息
+     *
+     * @param user 包含更新信息的用户对象
+     */
+    @Override
+    public void updateById(User user) {
+
+    }
+
+
+    /**
+     * 根据ID删除用户
+     *
+     * @param id 用户ID
+     */
+    @Override
+    public void deleteById(Long id) {
+
+    }
+
 
 }
