@@ -79,4 +79,6 @@ public interface UserService extends BaseService<User, Integer>{
     void updatePassword(Account account);
 
     void insert(User user);
+
+    void deleteById(Long aLong);
 }
