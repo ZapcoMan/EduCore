@@ -235,8 +235,8 @@ EduCore/
 ### 后端
 
 - **Java 17+**
-- **Spring Boot 2.x**
-- **MyBatis / MyBatis Plus**
+- **Spring Boot 3.4.X**
+- **MyBatis**
 - **JWT（JSON Web Token）**
 - **MySQL**
 - **Redis**
