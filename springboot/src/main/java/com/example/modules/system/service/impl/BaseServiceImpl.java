@@ -19,7 +19,7 @@ public abstract class BaseServiceImpl<T, ID, M> implements BaseService<T, ID> {
         this.mapper = mapper;
     }
 
-    public abstract User selectById(Long aLong);
+    public abstract T selectById(Long aLong);
 
     @Override
     public abstract T selectById(ID id);
