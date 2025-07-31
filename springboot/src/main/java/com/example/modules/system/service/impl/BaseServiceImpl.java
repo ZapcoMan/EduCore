@@ -1,5 +1,6 @@
 package com.example.modules.system.service.impl;
 
+import com.example.modules.system.entity.User;
 import com.example.modules.system.service.BaseService;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public abstract class BaseServiceImpl<T, ID, M> implements BaseService<T, ID> {
     public BaseServiceImpl(M mapper) {
         this.mapper = mapper;
     }
+
+    public abstract User selectById(Long aLong);
 
     @Override
     public abstract T selectById(ID id);
