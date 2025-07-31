@@ -35,6 +35,15 @@
                            class_name=#{className}
         WHERE id=#{id}
     </update>
+    <update id="updateById">
+        UPDATE student SET
+                           user_id= #{userId},
+                           student_no= #{studentNo},
+                           gender= #{gender},
+                           age= #{age},
+                           class_name= #{className}
+        WHERE id= #{id}
+    </update>
 
     <delete id="deleteById" parameterType="long">
         DELETE FROM student WHERE id=#{id}
@@ -42,6 +51,12 @@
 
     <select id="findByUserId" parameterType="long" resultMap="StudentResultMap">
         SELECT * FROM student WHERE user_id = #{userId}
+    </select>
+    <select id="selectById" resultType="com.example.modules.system.entity.Student">
+        SELECT * FROM student WHERE id = #{id}
+    </select>
+    <select id="selectAll" resultType="com.example.modules.system.entity.Student">
+        SELECT * FROM student
     </select>
 
 </mapper>
