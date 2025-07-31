@@ -266,7 +266,7 @@ EduCore/
 
 ## 数据库设计
 
-数据库名称：`grade_system`
+数据库名称：`learnscore`
 
 主要表：
 
