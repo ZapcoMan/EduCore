@@ -5,7 +5,7 @@ import com.example.modules.system.entity.Student;
 
 import java.util.List;
 
-public interface StudentService {
+public interface StudentService extends BaseService<Student, Long>{
     Student getById(Long id);
 
     List<Student> list();
