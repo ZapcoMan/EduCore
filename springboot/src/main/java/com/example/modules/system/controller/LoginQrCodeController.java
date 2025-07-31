@@ -30,7 +30,7 @@ public class LoginQrCodeController {
 
     @Resource
     private List<AccountService> accountServices;
-    private static final Log log = LogFactory.getLog(AuditLogController.class);
+    private static final Log log = LogFactory.getLog(LoginQrCodeController.class);
 
     /**
      * 生成登录二维码的UUID
