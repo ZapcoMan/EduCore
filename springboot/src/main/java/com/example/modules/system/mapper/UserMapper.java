@@ -67,6 +67,38 @@ public interface UserMapper {
     @Select("select * from `user` where id = #{id}")
     User selectById(String id);
 
+    /**
+     * 更新用户密码
+     * 根据用户名更新用户的密码信息
+     *
+     * @param username    用户名
+     * @param newpassword 新密码
+     */
     void updatePassword(String username, String newpassword);
+
+    /**
+     * 根据用户ID查询用户信息
+     *
+     * @param id 用户ID
+     * @return 用户对象，如果找到匹配的用户则返回用户信息，否则返回null
+     */
+    @Select("select * from `user` where id = #{id}")
+    User selectById(Long id);
+
+    /**
+     * 查询所有用户信息
+     *
+     * @return 用户列表，包含所有用户信息
+     */
+    List<User> selectAll();
+
+    /**
+     * 根据用户ID删除用户信息
+     *
+     * @param id 用户ID
+     */
+    @Delete("delete from `user` where id = #{id}")
+    void deleteById(Long id);
+
 }
 
