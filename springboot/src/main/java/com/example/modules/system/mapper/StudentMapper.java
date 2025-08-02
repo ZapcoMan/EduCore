@@ -84,7 +84,10 @@ public interface StudentMapper {
      */
     void updateById(Student student);
 
+    /**
+     * 根据学生ID更新学生信息
+     *
+     * @param id 学生的唯一标识符
+     */
+    void updateById(Long id);
 }
-
-
-
