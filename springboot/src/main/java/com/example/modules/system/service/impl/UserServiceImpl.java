@@ -125,6 +125,14 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> 
     }
 
     /**
+     * @param id
+     */
+    @Override
+    public void updateById(Long id) {
+
+    }
+
+    /**
      * 分页查询用户
      *
      * @param pageNum  页码
