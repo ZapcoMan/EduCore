@@ -55,7 +55,7 @@ public interface UserMapper {
      * @param id 用户ID，要删除用户的唯一标识
      */
     @Delete("delete from `user` where id = #{id}")
-    void deleteById(Integer id);
+    void deleteById(Long id);
 
     /**
      * 根据用户ID查询用户信息
@@ -65,7 +65,7 @@ public interface UserMapper {
      * @return 用户对象，如果找到匹配的用户，否则返回null
      */
     @Select("select * from `user` where id = #{id}")
-    User selectById(String id);
+    User selectById(Long id);
 
     /**
      * 更新用户密码
@@ -77,28 +77,9 @@ public interface UserMapper {
     void updatePassword(String username, String newpassword);
 
     /**
-     * 根据用户ID查询用户信息
-     *
-     * @param id 用户ID
-     * @return 用户对象，如果找到匹配的用户则返回用户信息，否则返回null
-     */
-    @Select("select * from `user` where id = #{id}")
-    User selectById(Long id);
-
-    /**
      * 查询所有用户信息
      *
      * @return 用户列表，包含所有用户信息
      */
     List<User> selectAll();
-
-    /**
-     * 根据用户ID删除用户信息
-     *
-     * @param id 用户ID
-     */
-    @Delete("delete from `user` where id = #{id}")
-    void deleteById(Long id);
-
 }
-
