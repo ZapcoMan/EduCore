@@ -35,5 +35,14 @@ public class AdminStrategy implements RoleStrategy {
         log.info("管理员账号不支持自助注册，请从后台添加");
         throw new UnsupportedOperationException("管理员账号不支持自助注册，请从后台添加");
     }
+
+    /**
+     * @param userId
+     * @return
+     */
+    @Override
+    public Account selectById(String userId) {
+        return null;
+    }
 }
 
