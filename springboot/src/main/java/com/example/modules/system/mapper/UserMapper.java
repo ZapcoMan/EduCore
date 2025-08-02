@@ -1,5 +1,6 @@
 package com.example.modules.system.mapper;
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,7 +12,7 @@ import java.util.List;
  * 该接口定义了对用户表进行数据库操作的方法，包括查询、插入、更新和删除操作
  */
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User, Long> {
 
     /**
      * 查询所有用户信息
