@@ -27,6 +27,7 @@
 
 ## 项目结构
 
+~~~
 EduCore/
 ├── files/                                  # 上传的文件目录
 │   ├── 多个.jpg和.png文件
@@ -204,6 +205,7 @@ EduCore/
 ├── .gitignore                               # Git忽略文件配置
 ├── LICENSE                                  # 许可证文件
 └── README.md                                # 项目说明文档
+~~~
 
 
 ---
