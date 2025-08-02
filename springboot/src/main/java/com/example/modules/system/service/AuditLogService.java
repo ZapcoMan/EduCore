@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 审计日志服务接口，定义了审计日志的操作
  */
-public interface AuditLogService {
+public interface AuditLogService extends BaseService<AuditLog, Long>{
 
     /**
      * 保存审计日志
