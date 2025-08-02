@@ -31,8 +31,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final Map<String, AccountService> serviceMap = new HashMap<>();
 
     private static final List<String> WHITE_LIST = Arrays.asList(
-            "/login", "/register", "/files/upload", "/files/download", "/favicon.ico"
+            "/auth/login", "/auth/register", "/auth/refresh-token",
+            "/files/upload", "/files/download", "/favicon.ico"
     );
+
 
     /**
      * 初始化角色与对应服务映射
