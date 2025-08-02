@@ -1,4 +1,4 @@
-package com.example.modules.system.service;
+package com.example.core.service;
 
 import java.util.List;
 
