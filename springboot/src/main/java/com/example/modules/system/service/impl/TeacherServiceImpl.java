@@ -1,6 +1,7 @@
 package com.example.modules.system.service.impl;
 
 
+import com.example.core.service.impl.BaseServiceImpl;
 import com.example.modules.system.entity.Teacher;
 import com.example.modules.system.mapper.TeacherMapper;
 import com.example.modules.system.service.TeacherService;

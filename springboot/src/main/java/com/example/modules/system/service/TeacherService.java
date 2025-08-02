@@ -1,11 +1,12 @@
 package com.example.modules.system.service;
 
 
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Teacher;
 
 import java.util.List;
 
-public interface TeacherService extends BaseService<Teacher, Long>{
+public interface TeacherService extends BaseService<Teacher, Long> {
     Teacher getById(Long id);
 
     List<Teacher> list();
