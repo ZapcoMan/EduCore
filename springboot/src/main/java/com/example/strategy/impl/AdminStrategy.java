@@ -1,12 +1,16 @@
 package com.example.strategy.impl;
 
+import com.example.modules.system.dto.LoginResult;
 import com.example.modules.system.entity.Account;
 import com.example.enums.RoleEnum;
 import com.example.modules.system.service.AdminService;
 import com.example.strategy.RoleStrategy;
+import com.example.common.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Slf4j
 @Component
@@ -21,8 +25,10 @@ public class AdminStrategy implements RoleStrategy {
     }
 
     @Override
-    public Account login(Account account) {
-        return adminService.login(account);
+    public LoginResult login(Account account) {
+        Account admin = adminService.login(account);
+        String token = JwtUtil.generateAccessToken(String.valueOf(admin.getId()), List.of(admin.getRole()));
+        return new LoginResult(admin, token);
     }
 
     @Override
@@ -36,13 +42,8 @@ public class AdminStrategy implements RoleStrategy {
         throw new UnsupportedOperationException("管理员账号不支持自助注册，请从后台添加");
     }
 
-    /**
-     * @param userId
-     * @return
-     */
     @Override
     public Account selectById(String userId) {
-        return null;
+        return adminService.selectById(userId);
     }
 }
-
