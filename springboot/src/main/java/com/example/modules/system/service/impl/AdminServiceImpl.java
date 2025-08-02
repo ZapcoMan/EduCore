@@ -101,7 +101,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Integer, AdminMappe
      */
     @Override
     public Admin selectById(Long id) {
-        return adminMapper.selectById(id);
+        return adminMapper.selectById(String.valueOf(id));
     }
 
     /**
