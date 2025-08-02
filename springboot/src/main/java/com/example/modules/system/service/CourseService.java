@@ -5,7 +5,7 @@ import com.example.modules.system.entity.Course;
 
 import java.util.List;
 
-public interface CourseService {
+public interface CourseService extends BaseService<Course, Long>{
     Course getById(Long id);
     List<Course> list();
     void create(Course c);
