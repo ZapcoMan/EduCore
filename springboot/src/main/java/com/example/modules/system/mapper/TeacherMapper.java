@@ -1,6 +1,7 @@
 package com.example.modules.system.mapper;
 
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * 它是一个标记接口，通过@Mapper注解指示MyBatis该接口是一个映射器
  */
 @Mapper
-public interface TeacherMapper {
+public interface TeacherMapper extends BaseMapper<Teacher, Long> {
     /**
      * 根据教师ID查找教师信息
      *
@@ -31,9 +32,8 @@ public interface TeacherMapper {
      * 向数据库中插入一个新的教师记录
      *
      * @param teacher 要插入的Teacher对象
-     * @return 返回插入操作影响的行数
      */
-    int insert(Teacher teacher);
+    void insert(Teacher teacher);
 
     /**
      * 更新数据库中现有的教师记录
@@ -47,9 +47,8 @@ public interface TeacherMapper {
      * 根据教师ID从数据库中删除教师记录
      *
      * @param id 要删除的教师的唯一标识符
-     * @return 返回删除操作影响的行数
      */
-    int deleteById(Long id);
+    void deleteById(Long id);
 
     /**
      * 根据用户ID查找教师信息
