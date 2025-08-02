@@ -2,6 +2,7 @@ package com.example.modules.system.service.impl;
 
 import java.util.List;
 
+import com.example.core.service.impl.BaseServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.example.modules.system.entity.AuditLog;
@@ -13,7 +14,7 @@ import com.example.modules.system.service.AuditLogService;
  * 该类负责处理审计日志的相关业务逻辑，如保存日志和获取最近的日志记录
  */
 @Service
-public class AuditLogServiceImpl extends  BaseServiceImpl<AuditLog, Long, AuditLogMapper> implements AuditLogService {
+public class AuditLogServiceImpl extends BaseServiceImpl<AuditLog, Long, AuditLogMapper> implements AuditLogService {
 
     /**
      * 审计日志数据访问对象
