@@ -299,3 +299,11 @@ EduCore/
 3. **系统稳定性提升**：
     - 修复了因Mapper接口方法冲突导致的Tomcat服务器启动失败问题
     - 解决了Spring Boot应用上下文初始化时的依赖注入异常
+
+### 最新代码修复
+
+1. **接口参数一致性修复**：
+    - 修复了AdminService接口中selectById方法参数类型不一致的问题，统一使用Integer类型
+    - 解决了NotificationController中delete方法与BaseController中同名方法返回值类型冲突的问题
+    - 确保子类方法与父类方法签名保持一致，避免编译错误
+
