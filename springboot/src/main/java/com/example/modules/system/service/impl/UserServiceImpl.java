@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.example.common.exception.CustomerException;
 import com.example.common.utils.TokenUtils;
+import com.example.core.service.impl.BaseServiceImpl;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.entity.User;
 import com.example.modules.system.mapper.UserMapper;

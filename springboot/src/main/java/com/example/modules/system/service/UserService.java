@@ -1,5 +1,6 @@
 package com.example.modules.system.service;
 
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.entity.User;
 import com.github.pagehelper.PageInfo;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * 用户服务接口，定义了对用户信息进行增删查改及相关操作的方法
  */
-public interface UserService extends BaseService<User, Integer>{
+public interface UserService extends BaseService<User, Integer> {
     /**
      * 添加新用户
      *
