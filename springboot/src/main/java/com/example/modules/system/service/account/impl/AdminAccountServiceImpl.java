@@ -6,7 +6,7 @@ import com.example.enums.RoleEnum;
 import com.example.modules.system.mapper.AdminMapper;
 import com.example.modules.system.service.AccountService;
 import com.example.modules.system.service.AdminService;
-import com.example.modules.system.service.impl.BaseServiceImpl;
+import com.example.core.service.impl.BaseServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
