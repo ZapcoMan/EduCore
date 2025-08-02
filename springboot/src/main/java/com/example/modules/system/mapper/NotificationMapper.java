@@ -1,5 +1,6 @@
 package com.example.modules.system.mapper;
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.Notification;
 import org.apache.ibatis.annotations.*;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * 使用MyBatis的@Mapper注解标识这是一个MyBatis映射器接口
  */
 @Mapper
-public interface NotificationMapper {
+public interface NotificationMapper  extends BaseMapper<Notification, Long> {
 
     /**
      * 插入一条新的通知记录到数据库中
