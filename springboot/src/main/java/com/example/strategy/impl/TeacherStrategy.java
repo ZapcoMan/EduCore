@@ -35,4 +35,13 @@ public class TeacherStrategy implements RoleStrategy {
         log.info("教师账号不支持自助注册，请从后台添加");
         throw new UnsupportedOperationException("教师账号不支持自助注册，请从后台添加");
     }
+
+    /**
+     * @param userId
+     * @return
+     */
+    @Override
+    public Account selectById(String userId) {
+        return null;
+    }
 }

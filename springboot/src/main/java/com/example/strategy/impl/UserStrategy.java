@@ -37,5 +37,14 @@ public class UserStrategy implements RoleStrategy {
         user.setPassword(account.getPassword());
         userService.register(user);
     }
+
+    /**
+     * @param userId
+     * @return
+     */
+    @Override
+    public Account selectById(String userId) {
+        return null;
+    }
 }
 
