@@ -105,6 +105,14 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Long, StudentMa
     }
 
     /**
+     * @param id
+     */
+    @Override
+    public void updateById(Long id) {
+        studentMapper.updateById(id);
+    }
+
+    /**
      * 插入学生信息
      *
      * @param student 学生实体对象
