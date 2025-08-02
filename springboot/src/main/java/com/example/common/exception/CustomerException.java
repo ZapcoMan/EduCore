@@ -1,7 +1,6 @@
 package com.example.common.exception;
 
 import com.example.common.result.ResultCodeEnum;
-import com.example.modules.system.controller.LoginQrCodeController;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.logging.Log;

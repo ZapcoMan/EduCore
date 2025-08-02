@@ -13,8 +13,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * 学生控制器类，处理与学生相关的HTTP请求
  */

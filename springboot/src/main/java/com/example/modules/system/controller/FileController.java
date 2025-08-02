@@ -6,8 +6,6 @@ import cn.hutool.core.lang.Dict;
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
 import com.example.common.exception.CustomerException;
-import com.example.core.controller.BaseController;
-import com.example.core.service.BaseService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;

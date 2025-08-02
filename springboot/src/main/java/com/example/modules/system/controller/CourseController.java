@@ -13,8 +13,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * 课程控制器类
  * 处理与课程相关的HTTP请求，包括增删改查等操作

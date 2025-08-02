@@ -4,8 +4,6 @@ import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.common.result.R;
-import com.example.core.controller.BaseController;
-import com.example.core.service.BaseService;
 import com.example.modules.system.dto.ConfirmDto;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.service.AccountService;
