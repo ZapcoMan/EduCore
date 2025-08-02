@@ -27,65 +27,184 @@
 
 ## 项目结构
 
-~~~
 EduCore/
-├── .git/                          # Git版本控制目录
-├── .idea/                         # IntelliJ IDEA配置目录
-├── files/                         # 上传的文件目录
+├── files/                                  # 上传的文件目录
 │   ├── 多个.jpg和.png文件
-├── springboot/                    # 后端Spring Boot项目
+├── springboot/                             # 后端Spring Boot项目
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/com/example/
 │   │   │   │   ├── SpringbootApplication.java  # Spring Boot启动类
 │   │   │   │   ├── common/                     # 通用模块
 │   │   │   │   │   ├── annotation/            # 自定义注解
+│   │   │   │   │   │   ├── AuditLogRecord.java
+│   │   │   │   │   │   ├── DataScope.java
+│   │   │   │   │   │   └── RequiresPermission.java
 │   │   │   │   │   ├── config/                # 配置类
+│   │   │   │   │   │   ├── CorsConfig.java
+│   │   │   │   │   │   ├── JacksonConfig.java
+│   │   │   │   │   │   ├── MyBatisConfig.java
+│   │   │   │   │   │   ├── RedisConfig.java
+│   │   │   │   │   │   └── SecurityConfig.java
 │   │   │   │   │   ├── dto/                   # 数据传输对象
+│   │   │   │   │   │   └── PageRequestDTO.java
 │   │   │   │   │   ├── exception/             # 异常处理
+│   │   │   │   │   │   ├── CustomerException.java
+│   │   │   │   │   │   └── GlobalExceptionHandler.java
 │   │   │   │   │   ├── result/                # 返回结果封装
+│   │   │   │   │   │   ├── PageResult.java
+│   │   │   │   │   │   ├── R.java
+│   │   │   │   │   │   └── ResultCodeEnum.java
 │   │   │   │   │   └── utils/                 # 工具类
+│   │   │   │   │       ├── MixUtils.java
+│   │   │   │   │       └── TokenUtils.java
 │   │   │   │   ├── core/                      # 核心模块
+│   │   │   │   │   ├── controller/            # 基础控制器
+│   │   │   │   │   │   └── BaseController.java
+│   │   │   │   │   ├── mapper/                # 基础Mapper
+│   │   │   │   │   │   └── BaseMapper.java
+│   │   │   │   │   └── service/               # 基础服务
+│   │   │   │   │       ├── BaseService.java
+│   │   │   │   │       └── impl/
+│   │   │   │   │           └── BaseServiceImpl.java
 │   │   │   │   ├── enums/                     # 枚举类
+│   │   │   │   │   └── RoleEnum.java
 │   │   │   │   ├── log/                       # 日志相关
 │   │   │   │   │   └── aspect/               # 切面实现
+│   │   │   │   │       └── AuditLogAspect.java
 │   │   │   │   ├── modules/                   # 业务模块
 │   │   │   │   │   └── system/               # 系统模块
 │   │   │   │   │       ├── controller/       # 控制器
+│   │   │   │   │       │   ├── AdminController.java
+│   │   │   │   │       │   ├── AuditLogController.java
+│   │   │   │   │       │   ├── CourseController.java
+│   │   │   │   │       │   ├── FileController.java
+│   │   │   │   │       │   ├── LoginQrCodeController.java
+│   │   │   │   │       │   ├── NotificationController.java
+│   │   │   │   │       │   ├── ScoreController.java
+│   │   │   │   │       │   ├── StudentController.java
+│   │   │   │   │       │   ├── TeacherController.java
+│   │   │   │   │       │   ├── UserController.java
+│   │   │   │   │       │   └── WebController.java
 │   │   │   │   │       ├── dto/              # 数据传输对象
+│   │   │   │   │       │   └── ConfirmDto.java
 │   │   │   │   │       ├── entity/           # 实体类
+│   │   │   │   │       │   ├── Account.java
+│   │   │   │   │       │   ├── Admin.java
+│   │   │   │   │       │   ├── AuditLog.java
+│   │   │   │   │       │   ├── Course.java
+│   │   │   │   │       │   ├── Notification.java
+│   │   │   │   │       │   ├── Score.java
+│   │   │   │   │       │   ├── Student.java
+│   │   │   │   │       │   ├── Teacher.java
+│   │   │   │   │       │   └── User.java
 │   │   │   │   │       ├── mapper/           # MyBatis映射接口
+│   │   │   │   │       │   ├── AdminMapper.java
+│   │   │   │   │       │   ├── AuditLogMapper.java
+│   │   │   │   │       │   ├── CourseMapper.java
+│   │   │   │   │       │   ├── NotificationMapper.java
+│   │   │   │   │       │   ├── ScoreMapper.java
+│   │   │   │   │       │   ├── StudentMapper.java
+│   │   │   │   │       │   ├── TeacherMapper.java
+│   │   │   │   │       │   └── UserMapper.java
 │   │   │   │   │       └── service/          # 业务逻辑接口及实现
+│   │   │   │   │           ├── AccountService.java
+│   │   │   │   │           ├── AdminService.java
+│   │   │   │   │           ├── AuditLogService.java
+│   │   │   │   │           ├── CourseService.java
+│   │   │   │   │           ├── NotificationService.java
+│   │   │   │   │           ├── ScoreService.java
+│   │   │   │   │           ├── StudentService.java
+│   │   │   │   │           ├── TeacherService.java
+│   │   │   │   │           ├── UserService.java
+│   │   │   │   │           ├── account/      # 账户服务
+│   │   │   │   │           │   └── impl/
+│   │   │   │   │           │       ├── AdminAccountServiceImpl.java
+│   │   │   │   │           │       ├── TeacherAccountServiceImpl.java
+│   │   │   │   │           │       └── UserAccountServiceImpl.java
+│   │   │   │   │           └── impl/
+│   │   │   │   │               ├── AdminServiceImpl.java
+│   │   │   │   │               ├── AuditLogServiceImpl.java
+│   │   │   │   │               ├── CourseServiceImpl.java
+│   │   │   │   │               ├── NotificationServiceImpl.java
+│   │   │   │   │               ├── ScoreServiceImpl.java
+│   │   │   │   │               ├── StudentServiceImpl.java
+│   │   │   │   │               ├── TeacherServiceImpl.java
+│   │   │   │   │               └── UserServiceImpl.java
 │   │   │   │   ├── security/                 # 安全相关
+│   │   │   │   │   └── JwtAuthenticationFilter.java
 │   │   │   │   └── strategy/                 # 策略模式实现
+│   │   │   │       ├── Context/              # 策略上下文
+│   │   │   │       │   └── RoleStrategyContext.java
+│   │   │   │       ├── RoleStrategy.java
+│   │   │   │       └── impl/                 # 策略具体实现
+│   │   │   │           ├── AdminStrategy.java
+│   │   │   │           ├── TeacherStrategy.java
+│   │   │   │           └── UserStrategy.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml           # Spring Boot配置文件
 │   │   │       ├── mapper/                   # MyBatis XML映射文件
+│   │   │       │   ├── AdminMapper.xml
+│   │   │       │   ├── CourseMapper.xml
+│   │   │       │   ├── ScoreMapper.xml
+│   │   │       │   ├── StudentMapper.xml
+│   │   │       │   ├── TeacherMapper.xml
+│   │   │       │   └── UserMapper.xml
 │   │   │       └── sql/                      # SQL脚本
+│   │   │           └── learnscore.sql
 │   │   └── test/                             # 测试代码
+│   │       ├── java/
+│   │       └── resources/
 │   ├── pom.xml                               # Maven配置文件
 │   └── target/                               # 编译输出目录
 ├── vue/                                      # 前端Vue项目
 │   ├── public/                               # 静态资源目录
 │   ├── src/                                  # 源代码目录
 │   │   ├── api/                             # API接口封装
+│   │   │   └── user.js
 │   │   ├── assets/                          # 静态资源
+│   │   │   ├── css/                         # 样式文件
+│   │   │   │   ├── global.css
+│   │   │   │   └── index.scss
+│   │   │   ├── imgs/                        # 图片资源
+│   │   │   │   ├── 404.png
+│   │   │   │   ├── bg.jpg
+│   │   │   │   ├── logo.png
+│   │   │   │   └── login.png
+│   │   │   └── logo.svg                     # Logo文件
 │   │   ├── components/                      # 组件目录
 │   │   ├── router/                          # 路由配置
+│   │   │   └── index.js
 │   │   ├── utils/                           # 工具类
+│   │   │   └── request.js
 │   │   ├── views/                           # 页面组件
+│   │   │   ├── 404.vue
+│   │   │   ├── Admin.vue
+│   │   │   ├── Course.vue
+│   │   │   ├── Home.vue
+│   │   │   ├── Login.vue
+│   │   │   ├── Manager.vue
+│   │   │   ├── Person.vue
+│   │   │   ├── QrConfirm.vue
+│   │   │   ├── Register.vue
+│   │   │   ├── Score.vue
+│   │   │   ├── Teacher.vue
+│   │   │   ├── UpdatePassword.vue
+│   │   │   └── User.vue
 │   │   ├── App.vue                          # 根组件
 │   │   └── main.js                          # 入口文件
 │   ├── node_modules/                        # npm依赖包
 │   ├── index.html                           # HTML模板
 │   ├── package.json                         # npm配置文件
 │   ├── vite.config.js                       # Vite配置文件
-│   └── 其他配置文件
+│   ├── .env                                 # 环境变量配置
+│   ├── .env.production                      # 生产环境变量配置
+│   ├── jsconfig.json                        # JavaScript配置
+│   └── vue.iml                              # IntelliJ IDEA Vue模块配置
 ├── .gitignore                               # Git忽略文件配置
 ├── LICENSE                                  # 许可证文件
-├── README.md                                # 项目说明文档
+└── README.md                                # 项目说明文档
 
-~~~
 
 ---
 
