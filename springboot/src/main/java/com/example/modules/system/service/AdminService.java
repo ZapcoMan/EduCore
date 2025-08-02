@@ -1,5 +1,6 @@
 package com.example.modules.system.service;
 
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.entity.Admin;
 import com.github.pagehelper.PageInfo;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * 管理员服务接口，定义了管理员相关的操作
  */
-public interface AdminService extends BaseService<Admin, Integer>{
+public interface AdminService extends BaseService<Admin, Integer> {
     /**
      * 添加管理员
      *
