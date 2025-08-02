@@ -1,5 +1,6 @@
 package com.example.modules.system.mapper;
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.Admin;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +13,7 @@ import java.util.List;
  * 这些方法用于对管理员表进行基本的CRUD操作
  */
 @Mapper
-public interface AdminMapper {
+public interface AdminMapper extends BaseMapper<Admin, Integer> {
 
     /**
      * 查询所有管理员信息
