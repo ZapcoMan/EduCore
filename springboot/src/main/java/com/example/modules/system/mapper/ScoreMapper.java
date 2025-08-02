@@ -1,6 +1,7 @@
 package com.example.modules.system.mapper;
 
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.Score;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * 它是一个标记接口，通过@Mapper注解标识，用于MyBatis框架的映射
  */
 @Mapper
-public interface ScoreMapper {
+public interface ScoreMapper extends BaseMapper<Score, Long> {
     /**
      * 根据成绩记录的ID查询成绩对象
      *
@@ -31,9 +32,8 @@ public interface ScoreMapper {
      * 插入一条新的成绩记录
      *
      * @param score 要插入的成绩对象
-     * @return 返回插入操作影响的行数
      */
-    int insert(Score score);
+    void insert(Score score);
 
     /**
      * 更新一条成绩记录
@@ -47,9 +47,8 @@ public interface ScoreMapper {
      * 根据成绩记录的ID删除该记录
      *
      * @param id 成绩记录的唯一标识符
-     * @return 返回删除操作影响的行数
      */
-    int deleteById(Long id);
+    void deleteById(Long id);
 
     /**
      * 根据学生id查询成绩列表
