@@ -2,6 +2,7 @@ package com.example.modules.system.service;
 
 
 
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Notification;
 
 import java.util.List;
