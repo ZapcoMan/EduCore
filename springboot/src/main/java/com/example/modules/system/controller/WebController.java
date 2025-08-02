@@ -2,8 +2,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
-import com.example.modules.system.entity.Account;
 import com.example.enums.RoleEnum;
+import com.example.modules.system.entity.Account;
 import com.example.strategy.Context.RoleStrategyContext;
 import io.swagger.annotations.ApiOperation;
 import jakarta.annotation.Resource;
@@ -24,7 +24,7 @@ public class WebController {
     // 定义一个名为 hello 的接口，处理 GET 请求
     // 接口的路径，全局唯一的
     @GetMapping("/hello")
-    public R hello() {
+    public R<Object> hello() {
         // 返回一个成功的响应，包含消息 "hello"
         return R.ok().message("hello");  // 接口的返回值
     }
@@ -39,7 +39,7 @@ public class WebController {
     @ApiOperation("登录")
     @AuditLogRecord(action = "登录", resource = "用户")
     @PostMapping("/login")
-    public R login(@RequestBody Account account) {
+    public R<Account> login(@RequestBody Account account) {
         // 使用策略模式根据用户角色调用不同的登录方法
         return R.success(roleStrategyContext.getStrategy(account.getRole()).login(account));
     }
@@ -56,7 +56,7 @@ public class WebController {
     @ApiOperation("用户注册")
     @AuditLogRecord(action = "用户注册", resource = "用户")
     @PostMapping("/register")
-    public R register(@RequestBody Account account) {
+    public R<Void> register(@RequestBody Account account) {
         // 注册逻辑保持原有 UserServiceImpl
         // 这里可以扩展成策略注册
         String role = account.getRole();
@@ -64,12 +64,12 @@ public class WebController {
         if (!RoleEnum.USER.getCode().equals(role)) {
             return R.error("仅允许学生注册，教师与管理员请联系教务处添加账号");
         }
-        try{
+        try {
             roleStrategyContext.getStrategy(account.getRole()).register(account);
-        }catch (UnsupportedOperationException e){
+        } catch (UnsupportedOperationException e) {
             log.warn(e.getMessage());
         }
-            return R.ok();
+        return R.ok();
 
 
     }
@@ -84,7 +84,7 @@ public class WebController {
     @ApiOperation("更新密码")
     @AuditLogRecord(action = "更新密码", resource = "用户")
     @PostMapping("/updatePassword")
-    public R updatePassword(@RequestBody Account account) {
+    public R<Void> updatePassword(@RequestBody Account account) {
         // 根据用户角色调用不同的更新密码方法
         roleStrategyContext.getStrategy(account.getRole()).updatePassword(account);
         return R.ok();
