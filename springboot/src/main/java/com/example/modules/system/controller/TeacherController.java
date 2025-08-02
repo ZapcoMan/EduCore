@@ -11,6 +11,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 教师控制器类，处理与教师相关的HTTP请求
  */
@@ -32,7 +34,7 @@ public class TeacherController {
     @ApiOperation("获取教师列表")
     @AuditLogRecord(action = "Get TeacherList", resource = "Teacher")
     @GetMapping
-    public R list() {
+    public R<List<Teacher>> list() {
         return R.success(teacherService.list());
     }
 
@@ -45,7 +47,7 @@ public class TeacherController {
     @ApiOperation("根据ID获取教师信息")
     @AuditLogRecord(action = "Get Teacher", resource = "Teacher")
     @GetMapping("/{id}")
-    public R get(@PathVariable Long id) {
+    public R<Teacher> get(@PathVariable Long id) {
         log.info("Teacher id = " + id);
         return R.success(teacherService.getById(id));
     }
@@ -59,7 +61,7 @@ public class TeacherController {
     @ApiOperation("创建教师")
     @AuditLogRecord(action = "Create Teacher", resource = "Teacher")
     @PostMapping
-    public R create(@RequestBody Teacher teacher) {
+    public R<Object> create(@RequestBody Teacher teacher) {
         log.info("Create Teacher  = " + teacher);
         teacherService.create(teacher);
         return R.ok().message("教师创建成功");
@@ -74,7 +76,7 @@ public class TeacherController {
     @ApiOperation("更新教师信息")
     @AuditLogRecord(action = "Update Teacher", resource = "Teacher")
     @PutMapping
-    public R update(@RequestBody Teacher teacher) {
+    public R<Object> update(@RequestBody Teacher teacher) {
         log.info("Update Teacher  = " + teacher);
         teacherService.update(teacher);
         return R.ok().message("教师更新完成");
@@ -102,7 +104,7 @@ public class TeacherController {
     @ApiOperation("根据UserID获取教师信息")
     @AuditLogRecord(action = "Get Teacher by UserId", resource = "Teacher")
     @GetMapping("/user/{userId}")
-    public R getByUserId(@PathVariable Long userId) {
+    public R<Teacher> getByUserId(@PathVariable Long userId) {
         log.info("Get Teacher by UserId = " + userId);
         return R.success(teacherService.getByUserId(userId));
     }
