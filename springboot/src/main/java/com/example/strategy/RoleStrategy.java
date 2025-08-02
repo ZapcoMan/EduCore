@@ -10,4 +10,6 @@ public interface RoleStrategy {
     void updatePassword(Account account);
 
     void register(Account account);
+
+    Account selectById(String userId);
 }
