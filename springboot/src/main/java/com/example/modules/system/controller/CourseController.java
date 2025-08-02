@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 课程控制器类
+ * 处理与课程相关的HTTP请求，包括增删改查等操作
+ */
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -22,6 +26,11 @@ public class CourseController {
 
     private static final Log log = LogFactory.getLog(CourseController.class);
 
+    /**
+     * 获取课程列表
+     *
+     * @return R<List<Course>> 包含课程列表的响应对象
+     */
     @ApiOperation("获取课程列表")
     @AuditLogRecord(action = "Get CourseList", resource = "Course")
     @GetMapping
@@ -30,6 +39,12 @@ public class CourseController {
         return R.success(courseService.list());  // 这里的list()返回List<Course>
     }
 
+    /**
+     * 根据ID获取课程信息
+     *
+     * @param id 课程ID
+     * @return R<Course> 包含课程信息的响应对象
+     */
     @ApiOperation("根据ID获取课程信息")
     @AuditLogRecord(action = "Get Course", resource = "Course")
     @GetMapping("/{id}")
@@ -38,6 +53,12 @@ public class CourseController {
         return R.success(courseService.getById(id));  // 返回单个 Course 对象
     }
 
+    /**
+     * 创建课程
+     *
+     * @param course 课程对象，包含要创建的课程信息
+     * @return R<Void> 表示创建结果的响应对象
+     */
     @ApiOperation("创建课程")
     @AuditLogRecord(action = "Create Course", resource = "Course")
     @PostMapping
@@ -47,6 +68,12 @@ public class CourseController {
         return R.ok(); // 创建成功，无具体数据返回，直接返回成功响应
     }
 
+    /**
+     * 更新课程信息
+     *
+     * @param course 课程对象，包含要更新的课程信息
+     * @return R<Void> 表示更新结果的响应对象
+     */
     @ApiOperation("更新课程信息")
     @AuditLogRecord(action = "Update Course", resource = "Course")
     @PutMapping
@@ -56,6 +83,12 @@ public class CourseController {
         return R.ok(); // 更新成功
     }
 
+    /**
+     * 根据ID删除课程
+     *
+     * @param id 要删除的课程ID
+     * @return R<Void> 表示删除结果的响应对象
+     */
     @ApiOperation("根据ID删除课程")
     @AuditLogRecord(action = "Delete Course", resource = "Course")
     @DeleteMapping("/{id}")
