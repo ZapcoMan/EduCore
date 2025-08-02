@@ -67,10 +67,10 @@ public class TeacherController extends BaseController<Teacher, Long> {
     @ApiOperation("创建教师")
     @AuditLogRecord(action = "Create Teacher", resource = "Teacher")
     @PostMapping
-    public R<Object> create(@RequestBody Teacher teacher) {
+    public R<Void> create(@RequestBody Teacher teacher) {
         log.info("Create Teacher  = " + teacher);
         teacherService.create(teacher);
-        return R.ok().message("教师创建成功");
+        return R.ok();
     }
 
     /**
@@ -82,10 +82,10 @@ public class TeacherController extends BaseController<Teacher, Long> {
     @ApiOperation("更新教师信息")
     @AuditLogRecord(action = "Update Teacher", resource = "Teacher")
     @PutMapping
-    public R<Object> update(@RequestBody Teacher teacher) {
+    public R<Void> update(@RequestBody Teacher teacher) {
         log.info("Update Teacher  = " + teacher);
         teacherService.update(teacher);
-        return R.ok().message("教师更新完成");
+        return R.ok();
     }
 
     /**
@@ -96,9 +96,10 @@ public class TeacherController extends BaseController<Teacher, Long> {
     @ApiOperation("根据ID删除教师")
     @AuditLogRecord(action = "Delete Teacher", resource = "Teacher")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public R<Void> delete(@PathVariable Long id) {
         log.info("Delete Teacher By ID = " + id);
         teacherService.delete(id);
+        return R.ok();
     }
 
     /**
