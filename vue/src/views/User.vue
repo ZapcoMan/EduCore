@@ -90,7 +90,7 @@ import {
 } from '@/api/user'
 
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('code_user') || '{}'),
+  user: JSON.parse(localStorage.getItem('account') || '{}'),
   username: null,
   name: null,
   pageNum: 1,
