@@ -70,7 +70,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 
 // 当前用户信息，用于判断角色
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('code_user') || '{}')
+  user: JSON.parse(localStorage.getItem('account') || '{}')
 })
 const isStudent = data.user.role === 'USER'
 
