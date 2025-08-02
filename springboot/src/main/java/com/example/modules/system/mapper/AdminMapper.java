@@ -62,8 +62,8 @@ public interface AdminMapper {
     @Select("select * from `admin` where id = #{id}")
     Admin selectById(String id);
 
-    @Select("select * from `admin` where id = #{id}")
-    Admin selectById(Long id);
+//    @Select("select * from `admin` where id = #{id}")
+//    Admin selectById(Long id);
 
     void updateById(Long id);
 }
