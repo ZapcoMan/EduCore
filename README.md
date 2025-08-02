@@ -38,6 +38,8 @@ EduCore/
 │ │ │ │ ├── common/
 │ │ │ │ │ ├── annotation/
 │ │ │ │ │ │ └── AuditLogRecord.java
+│ │ │ │ │ ├── dto/
+│ │ │ │ │ │ ├── PageRequestDTO.java
 │ │ │ │ │ ├── config/
 │ │ │ │ │ │ ├── CorsConfig.java
 │ │ │ │ │ │ ├── JacksonConfig.java
