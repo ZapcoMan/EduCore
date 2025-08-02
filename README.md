@@ -28,154 +28,63 @@
 ## 项目结构
 
 ~~~
-
 EduCore/
-├── springboot/
-│ ├── src/
-│ │ ├── main/
-│ │ │ ├── java/com/example/
-│ │ │ │ ├── SpringbootApplication.java
-│ │ │ │ ├── common/
-│ │ │ │ │ ├── annotation/
-│ │ │ │ │ │ └── AuditLogRecord.java
-│ │ │ │ │ ├── dto/
-│ │ │ │ │ │ ├── PageRequestDTO.java
-│ │ │ │ │ ├── config/
-│ │ │ │ │ │ ├── CorsConfig.java
-│ │ │ │ │ │ ├── JacksonConfig.java
-│ │ │ │ │ │ ├── RedisConfig.java
-│ │ │ │ │ │ └── SecurityConfig.java
-│ │ │ │ │ ├── exception/
-│ │ │ │ │ │ ├── CustomerException.java
-│ │ │ │ │ │ └── GlobalExceptionHandler.java
-│ │ │ │ │ ├── result/
-│ │ │ │ │ │ ├── R.java
-│ │ │ │ │ │ └── ResultCodeEnum.java
-│ │ │ │ │ └── utils/
-│ │ │ │ │ ├── MixUtils.java
-│ │ │ │ │ └── TokenUtils.java
-│ │ │ │ ├── enums/
-│ │ │ │ │ └── RoleEnum.java
-│ │ │ │ ├── log/
-│ │ │ │ │ └── aspect/
-│ │ │ │ │ └── AuditLogAspect.java
-│ │ │ │ ├── modules/
-│ │ │ │ │ └── system/
-│ │ │ │ │ ├── controller/
-│ │ │ │ │ │ ├── AdminController.java
-│ │ │ │ │ │ ├── AuditLogController.java
-│ │ │ │ │ │ ├── CourseController.java
-│ │ │ │ │ │ ├── FileController.java
-│ │ │ │ │ │ ├── LoginQrCodeController.java
-│ │ │ │ │ │ ├── NotificationController.java
-│ │ │ │ │ │ ├── ScoreController.java
-│ │ │ │ │ │ ├── StudentController.java
-│ │ │ │ │ │ ├── TeacherController.java
-│ │ │ │ │ │ ├── UserController.java
-│ │ │ │ │ │ └── WebController.java
-│ │ │ │ │ ├── dto/
-│ │ │ │ │ │ └── ConfirmDto.java
-│ │ │ │ │ ├── entity/
-│ │ │ │ │ │ ├── Account.java
-│ │ │ │ │ │ ├── Admin.java
-│ │ │ │ │ │ ├── AuditLog.java
-│ │ │ │ │ │ ├── Course.java
-│ │ │ │ │ │ ├── Notification.java
-│ │ │ │ │ │ ├── Score.java
-│ │ │ │ │ │ ├── Student.java
-│ │ │ │ │ │ ├── Teacher.java
-│ │ │ │ │ │ └── User.java
-│ │ │ │ │ ├── mapper/
-│ │ │ │ │ │ ├── AdminMapper.java
-│ │ │ │ │ │ ├── CourseMapper.java
-│ │ │ │ │ │ ├── ScoreMapper.java
-│ │ │ │ │ │ ├── StudentMapper.java
-│ │ │ │ │ │ ├── TeacherMapper.java
-│ │ │ │ │ │ ├── UserMapper.java
-│ │ │ │ │ │ └── ... (其他Mapper)
-│ │ │ │ │ └── service/
-│ │ │ │ │ ├── AdminService.java
-│ │ │ │ │ ├── BaseService.java
-│ │ │ │ │ ├── CourseService.java
-│ │ │ │ │ ├── ScoreService.java
-│ │ │ │ │ ├── StudentService.java
-│ │ │ │ │ ├── TeacherService.java
-│ │ │ │ │ ├── UserService.java
-│ │ │ │ │ └── impl/
-│ │ │ │ │ ├── BaseServiceImpl.java
-│ │ │ │ │ ├── AdminServiceImpl.java
-│ │ │ │ │ ├── CourseServiceImpl.java
-│ │ │ │ │ ├── ScoreServiceImpl.java
-│ │ │ │ │ ├── StudentServiceImpl.java
-│ │ │ │ │ ├── TeacherServiceImpl.java
-│ │ │ │ │ └── UserServiceImpl.java
-│ │ │ │ ├── security/
-│ │ │ │ │ └── JwtAuthenticationFilter.java
-│ │ │ │ └── strategy/
-│ │ │ │ ├── Context/
-│ │ │ │ │ └── RoleStrategyContext.java
-│ │ │ │ ├── RoleStrategy.java
-│ │ │ │ └── impl/
-│ │ │ │ ├── AdminStrategy.java
-│ │ │ │ ├── TeacherStrategy.java
-│ │ │ │ └── UserStrategy.java
-│ │ │ └── resources/
-│ │ │ ├── application.yml
-│ │ │ └── mapper/
-│ │ │ ├── AdminMapper.xml
-│ │ │ ├── CourseMapper.xml
-│ │ │ ├── ScoreMapper.xml
-│ │ │ ├── StudentMapper.xml
-│ │ │ ├── TeacherMapper.xml
-│ │ │ └── UserMapper.xml
-│ │ └── test/
-│ ├── pom.xml
-│ └── target/
-├── vue/
-│ ├── index.html
-│ ├── package.json
-│ ├── package-lock.json
-│ ├── vite.config.js
-│ ├── jsconfig.json
-│ ├── .env
-│ ├── .env.production
-│ ├── public/
-│ └── src/
-│ ├── main.js
-│ ├── App.vue
-│ ├── api/
-│ │ └── user.js
-│ ├── assets/
-│ │ ├── css/
-│ │ │ ├── global.css
-│ │ │ └── index.scss
-│ │ └── images/
-│ ├── components/
-│ ├── router/
-│ │ └── index.js
-│ ├── utils/
-│ │ └── request.js
-│ └── views/
-│ ├── 404.vue
-│ ├── Admin.vue
-│ ├── Course.vue
-│ ├── Home.vue
-│ ├── Login.vue
-│ ├── Manager.vue
-│ ├── Person.vue
-│ ├── QrConfirm.vue
-│ ├── Register.vue
-│ ├── Score.vue
-│ ├── Teacher.vue
-│ ├── UpdatePassword.vue
-│ └── User.vue
-├── sql/
-│ └── learnscore.sql
-├── files/
-├── .git/
-├── .gitignore
-├── .idea/
-└── README.md
+├── .git/                          # Git版本控制目录
+├── .idea/                         # IntelliJ IDEA配置目录
+├── files/                         # 上传的文件目录
+│   ├── 多个.jpg和.png文件
+├── springboot/                    # 后端Spring Boot项目
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/
+│   │   │   │   ├── SpringbootApplication.java  # Spring Boot启动类
+│   │   │   │   ├── common/                     # 通用模块
+│   │   │   │   │   ├── annotation/            # 自定义注解
+│   │   │   │   │   ├── config/                # 配置类
+│   │   │   │   │   ├── dto/                   # 数据传输对象
+│   │   │   │   │   ├── exception/             # 异常处理
+│   │   │   │   │   ├── result/                # 返回结果封装
+│   │   │   │   │   └── utils/                 # 工具类
+│   │   │   │   ├── core/                      # 核心模块
+│   │   │   │   ├── enums/                     # 枚举类
+│   │   │   │   ├── log/                       # 日志相关
+│   │   │   │   │   └── aspect/               # 切面实现
+│   │   │   │   ├── modules/                   # 业务模块
+│   │   │   │   │   └── system/               # 系统模块
+│   │   │   │   │       ├── controller/       # 控制器
+│   │   │   │   │       ├── dto/              # 数据传输对象
+│   │   │   │   │       ├── entity/           # 实体类
+│   │   │   │   │       ├── mapper/           # MyBatis映射接口
+│   │   │   │   │       └── service/          # 业务逻辑接口及实现
+│   │   │   │   ├── security/                 # 安全相关
+│   │   │   │   └── strategy/                 # 策略模式实现
+│   │   │   └── resources/
+│   │   │       ├── application.yml           # Spring Boot配置文件
+│   │   │       ├── mapper/                   # MyBatis XML映射文件
+│   │   │       └── sql/                      # SQL脚本
+│   │   └── test/                             # 测试代码
+│   ├── pom.xml                               # Maven配置文件
+│   └── target/                               # 编译输出目录
+├── vue/                                      # 前端Vue项目
+│   ├── public/                               # 静态资源目录
+│   ├── src/                                  # 源代码目录
+│   │   ├── api/                             # API接口封装
+│   │   ├── assets/                          # 静态资源
+│   │   ├── components/                      # 组件目录
+│   │   ├── router/                          # 路由配置
+│   │   ├── utils/                           # 工具类
+│   │   ├── views/                           # 页面组件
+│   │   ├── App.vue                          # 根组件
+│   │   └── main.js                          # 入口文件
+│   ├── node_modules/                        # npm依赖包
+│   ├── index.html                           # HTML模板
+│   ├── package.json                         # npm配置文件
+│   ├── vite.config.js                       # Vite配置文件
+│   └── 其他配置文件
+├── .gitignore                               # Git忽略文件配置
+├── LICENSE                                  # 许可证文件
+├── README.md                                # 项目说明文档
+
 ~~~
 ---
 
@@ -183,30 +92,30 @@ EduCore/
 
 #### 主要模块
 
-| 包名                           | 功能描述                                                                                                                                                                    |
-|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `common`                     | 通用类，包括返回结果封装、注解、配置、异常处理、工具类等                                                                                                                                            |
-| `common.annotation`          | 自定义注解，如 [@AuditLogRecord](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\annotation\AuditLogRecord.java#L15-L20) 用于标记需要记录日志的方法 |
-| `common.config`              | 系统配置类，如跨域配置、拦截器、Jackson 序列化配置等                                                                                                                                          |
-| `common.exception`           | 异常处理类，包括自定义异常和全局异常处理器                                                                                                                                                   |
-| `common.utils`               | 工具类，如 [TokenUtils](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\utils\TokenUtils.java#L21-L80) 处理 JWT 令牌                     |
-| `enums`                      | 枚举类，如角色枚举等                                                                                                                                                              |
-| `log.aspect`                 | 切面类，如 [AuditLogAspect](file://C:\Users\Administrator\Desktop\grade-system\springboot\src\main\java\com\example\log\aspect\AuditLogAspect.java#L23-L72) 实现操作日志记录逻辑       |
-| `modules.system.controller`  | 控制器类，处理 HTTP 请求                                                                                                                                                         |
-| `modules.system.dto`         | 数据传输对象，用于接收请求参数                                                                                                                                                         |
-| `modules.system.entity`      | 实体类，与数据库表一一映射                                                                                                                                                           |
-| `modules.system.mapper`      | MyBatis 映射接口，用于数据库操作                                                                                                                                                    |
-| `modules.system.service`     | 业务逻辑接口及其实现类                                                                                                                                                             |
-| `security`                   | 安全相关类，如 JWT 过滤器、鉴权逻辑                                                                                                                                                    |
-| `strategy`                   | 策略模式实现的扩展逻辑                                                                                                                                                             |
-| `strategy.Context`           | 策略上下文类                                                                                                                                                                  |
-| `strategy.impl`              | 策略具体实现类                                                                                                                                                                 |
-| `SpringbootApplication.java` | Spring Boot 启动类                                                                                                                                                         |
+| 包名                           | 功能描述                                                                                          |
+|------------------------------|-------------------------------------------------------------------------------------------------|
+| `common`                     | 通用类，包括返回结果封装、注解、配置、异常处理、工具类等                                                            |
+| `common.annotation`          | 自定义注解，如 [@AuditLogRecord](file://C:\Users\Administrator\Desktop\EduCore\springboot\src\main\java\com\example\common\annotation\AuditLogRecord.java#L15-L20) 用于标记需要记录日志的方法                                               |
+| `common.config`              | 系统配置类，如跨域配置、拦截器、Jackson 序列化配置等                                                        |
+| `common.exception`           | 异常处理类，包括自定义异常和全局异常处理器                                                               |
+| `common.utils`               | 工具类，如 [TokenUtils](file://C:\Users\Administrator\Desktop\EduCore\springboot\src\main\java\com\example\common\utils\TokenUtils.java#L21-L80) 处理 JWT 令牌                                                           |
+| `enums`                      | 枚举类，如角色枚举等                                                                                      |
+| `log.aspect`                 | 切面类，如 [AuditLogAspect](file://C:\Users\Administrator\Desktop\EduCore\springboot\src\main\java\com\example\log\aspect\AuditLogAspect.java#L23-L72) 实现操作日志记录逻辑                                                    |
+| `modules.system.controller`  | 控制器类，处理 HTTP 请求                                                                           |
+| `modules.system.dto`         | 数据传输对象，用于接收请求参数                                                                        |
+| `modules.system.entity`      | 实体类，与数据库表一一映射                                                                            |
+| `modules.system.mapper`      | MyBatis 映射接口，用于数据库操作                                                                     |
+| `modules.system.service`     | 业务逻辑接口及其实现类                                                                              |
+| `security`                   | 安全相关类，如 JWT 过滤器、鉴权逻辑                                                                  |
+| `strategy`                   | 策略模式实现的扩展逻辑                                                                              |
+| `strategy.Context`           | 策略上下文类                                                                                       |
+| `strategy.impl`              | 策略具体实现类                                                                                      |
+| `SpringbootApplication.java` | Spring Boot 启动类                                                                              |
 
 #### 配置文件
 
-- [application.yml](file://C:\Users\Administrator\Desktop\EduCore\springboot\src\main\resources\application.yml)：Spring Boot 主配置文件
-- [pom.xml](file://C:\Users\Administrator\Desktop\EduCore\springboot\pom.xml)：Maven 依赖配置文件
+- `application.yml`：Spring Boot 主配置文件
+- `pom.xml`：Maven 依赖配置文件
 
 #### SQL 脚本
 
@@ -214,24 +123,23 @@ EduCore/
 
 ---
 
-### 前端 ([vue](file://C:\Users\Administrator\Desktop\EduCore\vue\src\App.vue))
+### 前端 (`vue`)
 
 #### 主要模块
 
-| 目录                     | 功能描述                                                                                                                                                                                                                                       |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `src/api`              | API 接口封装，如 `user.js` 定义用户相关的请求                                                                                                                                                                                                             |
-| `src/assets/css`       | 全局样式文件和 SCSS 变量                                                                                                                                                                                                                            |
-| `src/router/index.js`  | Vue 路由配置                                                                                                                                                                                                                                   |
-| `src/utils/request.js` | 封装 Axios 请求                                                                                                                                                                                                                                |
+| 目录                     | 功能描述                                                                                                                       |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `src/api`              | API 接口封装，如 `user.js` 定义用户相关的请求                                                                                               |
+| `src/assets/css`       | 全局样式文件和 SCSS 变量                                                                                                               |
+| `src/router/index.js`  | Vue 路由配置                                                                                                                   |
+| `src/utils/request.js` | 封装 Axios 请求                                                                                                                |
 | `src/views/`           | 页面组件目录，包括： <br> - `Login.vue` 登录页 <br> - `Register.vue` 注册页 <br> - `Home.vue` 主页 <br> - `User.vue` 用户管理 <br> - `Admin.vue` 管理员管理 <br> - `UpdatePassword.vue` 修改密码 <br> - `Person.vue` 个人信息 <br> - `Manager.vue` 管理界面 <br> - `404.vue` 错误页面 |
-| `App.vue`              | 根组件                                                                                                                                                                                                                                        |
-| `main.js`              | Vue 入口文件                                                                                                                                                                                                                                   |
-| `index.html`           | HTML 模板                                                                                                                                                                                                                                    |
-| `package.json`         | npm 包配置                                                                                                                                                                                                                                    |
-| `vite.config.js`       | Vite 构建配置                                                                                                                                                                                                                                  |
+| `App.vue`              | 根组件                                                                                                                        |
+| `main.js`              | Vue 入口文件                                                                                                                   |
+| `index.html`           | HTML 模板                                                                                                                    |
+| `package.json`         | npm 包配置                                                                                                                    |
+| `vite.config.js`       | Vite 构建配置                                                                                                                  |
 
----
 
 ## 技术栈
 
@@ -375,3 +283,17 @@ EduCore/
    - 添加了关于Swagger/OpenAPI的详细说明
    - 介绍了API文档的访问方式和特点
    - 列出了项目中使用的相关技术依赖
+
+### 最新修复和改进
+
+1. **Mapper接口修复**：
+   - 修复了AdminMapper中selectById方法的重复定义问题，删除了String类型参数的重载方法
+   - 修复了UserMapper中selectById和deleteById方法的重复定义问题，统一使用Long类型参数
+
+2. **MyBatis配置优化**：
+   - 解决了由于Mapper接口中方法重载导致的Mapped Statements key冲突问题
+   - 确保MyBatis能够正确解析和注册Mapper XML文件和注解
+
+3. **系统稳定性提升**：
+   - 修复了因Mapper接口方法冲突导致的Tomcat服务器启动失败问题
+   - 解决了Spring Boot应用上下文初始化时的依赖注入异常
