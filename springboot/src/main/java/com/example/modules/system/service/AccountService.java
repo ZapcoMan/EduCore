@@ -6,7 +6,7 @@ import com.example.enums.RoleEnum;
 /**
  * AccountService接口定义了账户服务的通用操作，包括登录、密码更新和根据角色的不同行为
  */
-public interface AccountService {
+public interface AccountService extends BaseService<Account, String>{
     /**
      * 获取服务支持的角色
      *
