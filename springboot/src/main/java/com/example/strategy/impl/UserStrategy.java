@@ -1,12 +1,16 @@
 package com.example.strategy.impl;
 
+import com.example.modules.system.dto.LoginResult;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.entity.User;
 import com.example.enums.RoleEnum;
 import com.example.modules.system.service.UserService;
 import com.example.strategy.RoleStrategy;
+import com.example.common.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserStrategy implements RoleStrategy {
@@ -20,8 +24,10 @@ public class UserStrategy implements RoleStrategy {
     }
 
     @Override
-    public Account login(Account account) {
-        return userService.login(account);
+    public LoginResult login(Account account) {
+        Account user = userService.login(account);
+        String token = JwtUtil.generateAccessToken(String.valueOf(user.getId()), List.of(user.getRole()));
+        return new LoginResult(user, token);
     }
 
     @Override
@@ -31,20 +37,14 @@ public class UserStrategy implements RoleStrategy {
 
     @Override
     public void register(Account account) {
-        // 新建一个Admin对象 从 account 中取出一个admin 对象来
         User user = new User();
         user.setUsername(account.getUsername());
         user.setPassword(account.getPassword());
         userService.register(user);
     }
 
-    /**
-     * @param userId
-     * @return
-     */
     @Override
     public Account selectById(String userId) {
-        return null;
+        return userService.selectById(userId);
     }
 }
-
