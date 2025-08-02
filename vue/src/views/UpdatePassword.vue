@@ -25,7 +25,7 @@ import {ElMessage} from "element-plus";
 import request from "@/utils/request.js";
 
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('code_user') || "{}"),
+  user: JSON.parse(localStorage.getItem('account') || "{}"),
   rules:{
     password: [
       { required: true, message: '请填写原密码', trigger: 'blur' }
@@ -48,7 +48,7 @@ const updatePassword = () => {
         if (res.code === 20000) {
           ElMessage.success('修改成功')
           setInterval(() => {
-            localStorage.removeItem('code_user')
+            localStorage.removeItem('account')
             location.href = '/login'
           }, 500)
         } else {
