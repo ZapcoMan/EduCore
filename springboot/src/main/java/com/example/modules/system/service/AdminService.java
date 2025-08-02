@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 管理员服务接口，定义了管理员相关的操作
  */
-public interface AdminService {
+public interface AdminService extends BaseService<Admin, Integer>{
     /**
      * 添加管理员
      *
