@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 通知服务接口，提供通知相关的操作
  */
-public interface NotificationService {
+public interface NotificationService extends BaseService<Notification, Long> {
 
     /**
      * 发送通知
