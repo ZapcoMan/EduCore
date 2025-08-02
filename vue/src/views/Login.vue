@@ -94,9 +94,9 @@ const data = reactive({
 const login = () => {
   formRef.value.validate((valid) => {
     if (valid) {
-      request.post('/login', data.form).then(res => {
+      request.post('/auth/login', data.form).then(res => {
         if (res.code === 20000) {
-          localStorage.setItem("code_user", JSON.stringify(res.data || {}))
+          localStorage.setItem("account", JSON.stringify(res.data || {}))
           localStorage.setItem("token", res.data.token)
           ElMessage.success('登录成功')
           router.push('/manager/home')
@@ -125,7 +125,7 @@ const startPolling = () => {
     if (status === 'confirmed') {
       clearInterval(pollTimer)
       const account = res.data.account
-      localStorage.setItem("code_user", JSON.stringify(account))
+      localStorage.setItem("account", JSON.stringify(account))
       localStorage.setItem("token", account.token)
       qrStatus.value = "confirmed"
       ElMessage.success("扫码成功")
