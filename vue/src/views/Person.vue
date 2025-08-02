@@ -35,7 +35,7 @@ import {ElMessage} from "element-plus";
 import request from "@/utils/request.js";
 
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('code_user') || "{}")
+  user: JSON.parse(localStorage.getItem('account') || "{}")
 })
 
 const handleFileSuccess = (res) => {
@@ -56,7 +56,7 @@ const update = () => {
   request.put(url, data.user).then(res => {
     if (res.code === 20000) {
       ElMessage.success('更新成功')
-      localStorage.setItem("code_user", JSON.stringify(data.user))
+      localStorage.setItem("account", JSON.stringify(data.user))
       emit('updateUser')
     }
   })
