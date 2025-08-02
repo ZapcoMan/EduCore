@@ -1,6 +1,7 @@
 package com.example.modules.system.controller;
 
 import com.example.common.result.R;
+import com.example.modules.system.dto.LoginResult;
 import com.example.modules.system.entity.Account;
 import com.example.strategy.Context.RoleStrategyContext;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,8 +20,10 @@ public class AuthController {
 
     @Operation(summary = "登录")
     @PostMapping("/login")
-    public R<Account> login(@RequestBody Account account) {
-        return R.success(roleStrategyContext.getStrategy(account.getRole()).login(account));
+    public R<LoginResult> login(@RequestBody Account account) {
+        log.info("用户登录{}", account.getUsername());
+        LoginResult result = roleStrategyContext.getStrategy(account.getRole()).login(account);
+        return R.success(result);
     }
 
     @Operation(summary = "刷新 Token")
@@ -40,20 +43,11 @@ public class AuthController {
         }
     }
 
-    /**
-     * 登出接口
-     * @param request HTTP请求，可从请求头获取token
-     * @return 注销结果
-     */
     @Operation(summary = "登出")
     @PostMapping("/logout")
     public R<Void> logout(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
-        // TODO: 若使用 Redis 等，加入 token 黑名单逻辑，防止注销后token继续使用
-        // 当前为无状态认证，前端清除token即可，服务器无需额外处理
         log.info("用户请求登出，token: {}", token);
         return R.ok();
     }
-
-
 }
