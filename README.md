@@ -2,13 +2,14 @@
 
 ## 项目概述
 
-> 本系统是一个基于 **Spring Boot + Vue** 构建的前后端分离的 EduCore 教务管理系统。后端使用 **Java 17+** 编写，采用 **Spring Boot** 框架；前端使用 **Vue 3 + Vite** 开发，UI 支持响应式布局；数据库使用 **MySQL**。
+> 本系统是一个基于 **Spring Boot + Vue** 构建的前后端分离的 EduCore 教务管理系统。后端使用 **Java 17+** 编写，采用 *
+*Spring Boot** 框架；前端使用 **Vue 3 + Vite** 开发，UI 支持响应式布局；数据库使用 **MySQL**。
 
 * 系统实现了完整的用户管理、成绩管理、通知公告、操作日志记录等功能，并引入了以下增强特性：
-  - JWT 鉴权机制
-  - 审计日志记录（通过注解与切面实现）
-  - 文件上传支持（头像、Excel 成绩导入等）
-  - 多角色权限控制（管理员、教师、学生）
+    - JWT 鉴权机制
+    - 审计日志记录（通过注解与切面实现）
+    - 文件上传支持（头像、Excel 成绩导入等）
+    - 多角色权限控制（管理员、教师、学生）
 
 ---
 
@@ -22,156 +23,158 @@
 - [功能列表](#功能列表)
 - [数据库设计](#数据库设计)
 - [开发部署指南](#开发部署指南)
+- [最近更新](#最近更新)
 
 ## 项目结构
 
-
 ~~~
+
 EduCore/
 ├── springboot/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/example/
-│   │   │   │   ├── SpringbootApplication.java
-│   │   │   │   ├── common/
-│   │   │   │   │   ├── annotation/
-│   │   │   │   │   │   └── AuditLogRecord.java
-│   │   │   │   │   ├── config/
-│   │   │   │   │   │   ├── CorsConfig.java
-│   │   │   │   │   │   ├── JacksonConfig.java
-│   │   │   │   │   │   ├── RedisConfig.java
-│   │   │   │   │   │   └── SecurityConfig.java
-│   │   │   │   │   ├── exception/
-│   │   │   │   │   │   ├── CustomerException.java
-│   │   │   │   │   │   └── GlobalExceptionHandler.java
-│   │   │   │   │   ├── result/
-│   │   │   │   │   │   ├── R.java
-│   │   │   │   │   │   └── ResultCodeEnum.java
-│   │   │   │   │   └── utils/
-│   │   │   │   │       ├── MixUtils.java
-│   │   │   │   │       └── TokenUtils.java
-│   │   │   │   ├── enums/
-│   │   │   │   │   └── RoleEnum.java
-│   │   │   │   ├── log/
-│   │   │   │   │   └── aspect/
-│   │   │   │   │       └── AuditLogAspect.java
-│   │   │   │   ├── modules/
-│   │   │   │   │   └── system/
-│   │   │   │   │       ├── controller/
-│   │   │   │   │       │   ├── AdminController.java
-│   │   │   │   │       │   ├── AuditLogController.java
-│   │   │   │   │       │   ├── CourseController.java
-│   │   │   │   │       │   ├── FileController.java
-│   │   │   │   │       │   ├── LoginQrCodeController.java
-│   │   │   │   │       │   ├── NotificationController.java
-│   │   │   │   │       │   ├── ScoreController.java
-│   │   │   │   │       │   ├── StudentController.java
-│   │   │   │   │       │   ├── TeacherController.java
-│   │   │   │   │       │   ├── UserController.java
-│   │   │   │   │       │   └── WebController.java
-│   │   │   │   │       ├── dto/
-│   │   │   │   │       │   └── ConfirmDto.java
-│   │   │   │   │       ├── entity/
-│   │   │   │   │       │   ├── Account.java
-│   │   │   │   │       │   ├── Admin.java
-│   │   │   │   │       │   ├── AuditLog.java
-│   │   │   │   │       │   ├── Course.java
-│   │   │   │   │       │   ├── Notification.java
-│   │   │   │   │       │   ├── Score.java
-│   │   │   │   │       │   ├── Student.java
-│   │   │   │   │       │   ├── Teacher.java
-│   │   │   │   │       │   └── User.java
-│   │   │   │   │       ├── mapper/
-│   │   │   │   │       │   ├── AdminMapper.java
-│   │   │   │   │       │   ├── CourseMapper.java
-│   │   │   │   │       │   ├── ScoreMapper.java
-│   │   │   │   │       │   ├── StudentMapper.java
-│   │   │   │   │       │   ├── TeacherMapper.java
-│   │   │   │   │       │   ├── UserMapper.java
-│   │   │   │   │       │   └── ... (其他Mapper)
-│   │   │   │   │       └── service/
-│   │   │   │   │           ├── AdminService.java
-│   │   │   │   │           ├── CourseService.java
-│   │   │   │   │           ├── ScoreService.java
-│   │   │   │   │           ├── StudentService.java
-│   │   │   │   │           ├── TeacherService.java
-│   │   │   │   │           ├── UserService.java
-│   │   │   │   │           └── impl/
-│   │   │   │   │               ├── AdminServiceImpl.java
-│   │   │   │   │               ├── CourseServiceImpl.java
-│   │   │   │   │               ├── ScoreServiceImpl.java
-│   │   │   │   │               ├── StudentServiceImpl.java
-│   │   │   │   │               ├── TeacherServiceImpl.java
-│   │   │   │   │               └── UserServiceImpl.java
-│   │   │   │   ├── security/
-│   │   │   │   │   └── JwtAuthenticationFilter.java
-│   │   │   │   └── strategy/
-│   │   │   │       ├── Context/
-│   │   │   │       │   └── RoleStrategyContext.java
-│   │   │   │       ├── RoleStrategy.java
-│   │   │   │       └── impl/
-│   │   │   │           ├── AdminStrategy.java
-│   │   │   │           ├── TeacherStrategy.java
-│   │   │   │           └── UserStrategy.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── mapper/
-│   │   │           ├── AdminMapper.xml
-│   │   │           ├── CourseMapper.xml
-│   │   │           ├── ScoreMapper.xml
-│   │   │           ├── StudentMapper.xml
-│   │   │           ├── TeacherMapper.xml
-│   │   │           └── UserMapper.xml
-│   │   └── test/
-│   ├── pom.xml
-│   └── target/
+│ ├── src/
+│ │ ├── main/
+│ │ │ ├── java/com/example/
+│ │ │ │ ├── SpringbootApplication.java
+│ │ │ │ ├── common/
+│ │ │ │ │ ├── annotation/
+│ │ │ │ │ │ └── AuditLogRecord.java
+│ │ │ │ │ ├── config/
+│ │ │ │ │ │ ├── CorsConfig.java
+│ │ │ │ │ │ ├── JacksonConfig.java
+│ │ │ │ │ │ ├── RedisConfig.java
+│ │ │ │ │ │ └── SecurityConfig.java
+│ │ │ │ │ ├── exception/
+│ │ │ │ │ │ ├── CustomerException.java
+│ │ │ │ │ │ └── GlobalExceptionHandler.java
+│ │ │ │ │ ├── result/
+│ │ │ │ │ │ ├── R.java
+│ │ │ │ │ │ └── ResultCodeEnum.java
+│ │ │ │ │ └── utils/
+│ │ │ │ │ ├── MixUtils.java
+│ │ │ │ │ └── TokenUtils.java
+│ │ │ │ ├── enums/
+│ │ │ │ │ └── RoleEnum.java
+│ │ │ │ ├── log/
+│ │ │ │ │ └── aspect/
+│ │ │ │ │ └── AuditLogAspect.java
+│ │ │ │ ├── modules/
+│ │ │ │ │ └── system/
+│ │ │ │ │ ├── controller/
+│ │ │ │ │ │ ├── AdminController.java
+│ │ │ │ │ │ ├── AuditLogController.java
+│ │ │ │ │ │ ├── CourseController.java
+│ │ │ │ │ │ ├── FileController.java
+│ │ │ │ │ │ ├── LoginQrCodeController.java
+│ │ │ │ │ │ ├── NotificationController.java
+│ │ │ │ │ │ ├── ScoreController.java
+│ │ │ │ │ │ ├── StudentController.java
+│ │ │ │ │ │ ├── TeacherController.java
+│ │ │ │ │ │ ├── UserController.java
+│ │ │ │ │ │ └── WebController.java
+│ │ │ │ │ ├── dto/
+│ │ │ │ │ │ └── ConfirmDto.java
+│ │ │ │ │ ├── entity/
+│ │ │ │ │ │ ├── Account.java
+│ │ │ │ │ │ ├── Admin.java
+│ │ │ │ │ │ ├── AuditLog.java
+│ │ │ │ │ │ ├── Course.java
+│ │ │ │ │ │ ├── Notification.java
+│ │ │ │ │ │ ├── Score.java
+│ │ │ │ │ │ ├── Student.java
+│ │ │ │ │ │ ├── Teacher.java
+│ │ │ │ │ │ └── User.java
+│ │ │ │ │ ├── mapper/
+│ │ │ │ │ │ ├── AdminMapper.java
+│ │ │ │ │ │ ├── CourseMapper.java
+│ │ │ │ │ │ ├── ScoreMapper.java
+│ │ │ │ │ │ ├── StudentMapper.java
+│ │ │ │ │ │ ├── TeacherMapper.java
+│ │ │ │ │ │ ├── UserMapper.java
+│ │ │ │ │ │ └── ... (其他Mapper)
+│ │ │ │ │ └── service/
+│ │ │ │ │ ├── AdminService.java
+│ │ │ │ │ ├── BaseService.java
+│ │ │ │ │ ├── CourseService.java
+│ │ │ │ │ ├── ScoreService.java
+│ │ │ │ │ ├── StudentService.java
+│ │ │ │ │ ├── TeacherService.java
+│ │ │ │ │ ├── UserService.java
+│ │ │ │ │ └── impl/
+│ │ │ │ │ ├── BaseServiceImpl.java
+│ │ │ │ │ ├── AdminServiceImpl.java
+│ │ │ │ │ ├── CourseServiceImpl.java
+│ │ │ │ │ ├── ScoreServiceImpl.java
+│ │ │ │ │ ├── StudentServiceImpl.java
+│ │ │ │ │ ├── TeacherServiceImpl.java
+│ │ │ │ │ └── UserServiceImpl.java
+│ │ │ │ ├── security/
+│ │ │ │ │ └── JwtAuthenticationFilter.java
+│ │ │ │ └── strategy/
+│ │ │ │ ├── Context/
+│ │ │ │ │ └── RoleStrategyContext.java
+│ │ │ │ ├── RoleStrategy.java
+│ │ │ │ └── impl/
+│ │ │ │ ├── AdminStrategy.java
+│ │ │ │ ├── TeacherStrategy.java
+│ │ │ │ └── UserStrategy.java
+│ │ │ └── resources/
+│ │ │ ├── application.yml
+│ │ │ └── mapper/
+│ │ │ ├── AdminMapper.xml
+│ │ │ ├── CourseMapper.xml
+│ │ │ ├── ScoreMapper.xml
+│ │ │ ├── StudentMapper.xml
+│ │ │ ├── TeacherMapper.xml
+│ │ │ └── UserMapper.xml
+│ │ └── test/
+│ ├── pom.xml
+│ └── target/
 ├── vue/
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── vite.config.js
-│   ├── jsconfig.json
-│   ├── .env
-│   ├── .env.production
-│   ├── public/
-│   └── src/
-│       ├── main.js
-│       ├── App.vue
-│       ├── api/
-│       │   └── user.js
-│       ├── assets/
-│       │   ├── css/
-│       │   │   ├── global.css
-│       │   │   └── index.scss
-│       │   └── images/
-│       ├── components/
-│       ├── router/
-│       │   └── index.js
-│       ├── utils/
-│       │   └── request.js
-│       └── views/
-│           ├── 404.vue
-│           ├── Admin.vue
-│           ├── Course.vue
-│           ├── Home.vue
-│           ├── Login.vue
-│           ├── Manager.vue
-│           ├── Person.vue
-│           ├── QrConfirm.vue
-│           ├── Register.vue
-│           ├── Score.vue
-│           ├── Teacher.vue
-│           ├── UpdatePassword.vue
-│           └── User.vue
+│ ├── index.html
+│ ├── package.json
+│ ├── package-lock.json
+│ ├── vite.config.js
+│ ├── jsconfig.json
+│ ├── .env
+│ ├── .env.production
+│ ├── public/
+│ └── src/
+│ ├── main.js
+│ ├── App.vue
+│ ├── api/
+│ │ └── user.js
+│ ├── assets/
+│ │ ├── css/
+│ │ │ ├── global.css
+│ │ │ └── index.scss
+│ │ └── images/
+│ ├── components/
+│ ├── router/
+│ │ └── index.js
+│ ├── utils/
+│ │ └── request.js
+│ └── views/
+│ ├── 404.vue
+│ ├── Admin.vue
+│ ├── Course.vue
+│ ├── Home.vue
+│ ├── Login.vue
+│ ├── Manager.vue
+│ ├── Person.vue
+│ ├── QrConfirm.vue
+│ ├── Register.vue
+│ ├── Score.vue
+│ ├── Teacher.vue
+│ ├── UpdatePassword.vue
+│ └── User.vue
 ├── sql/
-│   └── learnscore.sql
+│ └── learnscore.sql
 ├── files/
 ├── .git/
 ├── .gitignore
 ├── .idea/
 └── README.md
 ~~~
-
 ---
 
 ### 后端 (`springboot`)
@@ -197,12 +200,11 @@ EduCore/
 | `strategy.Context`           | 策略上下文类                                                                                                                                                                  |
 | `strategy.impl`              | 策略具体实现类                                                                                                                                                                 |
 | `SpringbootApplication.java` | Spring Boot 启动类                                                                                                                                                         |
-|
 
 #### 配置文件
 
-- `application.yml`：Spring Boot 主配置文件
-- `pom.xml`：Maven 依赖配置文件
+- [application.yml](file://C:\Users\Administrator\Desktop\EduCore\springboot\src\main\resources\application.yml)：Spring Boot 主配置文件
+- [pom.xml](file://C:\Users\Administrator\Desktop\EduCore\springboot\pom.xml)：Maven 依赖配置文件
 
 #### SQL 脚本
 
@@ -210,7 +212,7 @@ EduCore/
 
 ---
 
-### 前端 (`vue`)
+### 前端 ([vue](file://C:\Users\Administrator\Desktop\EduCore\vue\src\App.vue))
 
 #### 主要模块
 
@@ -297,3 +299,47 @@ EduCore/
 2. 进入 `vue` 目录
 3. 执行 `npm install`
 4. 执行 `npm run dev` 启动开发服务器
+
+---
+
+## 最近更新
+
+### 新增文件和功能
+
+1. **StudentMapper.java** 中添加了新的方法：
+   - `void updateById(Long id);` - 根据学生ID更新学生信息
+
+2. **AdminServiceImpl.java** 代码优化：
+   - 修复了重复代码问题
+   - 统一了方法注释格式
+   - 规范了变量命名
+
+3. **代码注释完善**：
+   - 为StudentMapper中的updateById方法添加了完整的JavaDoc注释
+   - 统一了所有方法的注释风格
+
+4. **代码结构优化**：
+   - 重构了AdminServiceImpl中的重复逻辑
+   - 完善了所有接口方法的实现
+   - 保证了代码的一致性和可维护性
+
+### 进一步的代码改进
+
+1. **目录结构更新**：
+   - 更新了README.md中的项目目录结构，确保与实际项目结构一致
+
+2. **代码质量提升**：
+   - 修复了AdminServiceImpl中updateById方法的参数类型问题
+   - 统一了所有方法的注释风格，确保符合JavaDoc标准
+   - 优化了变量命名规范，如将InputPassWord改为inputPassword
+
+3. **文档更新**：
+   - 完善了README.md文档，包含了最新的项目结构和更新记录
+   - 提供了更详细的模块说明和功能描述
+
+4. **代码一致性改进**：
+   - 确保所有重写方法都添加了@Override注解
+   - 统一了所有服务实现类的代码风格
+   - 优化了方法参数和返回值的注释说明
+
+
