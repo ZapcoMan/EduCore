@@ -40,9 +40,9 @@ public class ScoreController {
     @ApiOperation("获取成绩列表")
     @AuditLogRecord(action = "Get ScoreList", resource = "Score")
     @GetMapping
-    public List<Score> list() {
+    public R<List<Score>> list() {
         log.info("Get ScoreList");
-        return scoreService.list();
+        return R.success(scoreService.list());
     }
 
     /**
@@ -54,7 +54,7 @@ public class ScoreController {
     @ApiOperation("根据ID获取成绩信息")
     @AuditLogRecord(action = "Get Score", resource = "Score")
     @GetMapping("/{id}")
-    public R get(@PathVariable Long id) {
+    public R<Score> get(@PathVariable Long id) {
         log.info("Get Score By id = " + id);
         return R.success(scoreService.getById(id));
     }
