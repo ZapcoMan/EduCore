@@ -39,7 +39,7 @@ public class LoginQrCodeController {
      */
     @ApiOperation("生成登录二维码")
     @GetMapping("/generate")
-    public R generateQrCode() {
+    public R<String> generateQrCode() {
         // 生成唯一标识符
         String uuid = UUID.randomUUID().toString();
         String key = "login:uuid:" + uuid;
@@ -58,7 +58,7 @@ public class LoginQrCodeController {
      */
     @ApiOperation("检查二维码状态")
     @GetMapping("/status/{uuid}")
-    public R checkStatus(@PathVariable String uuid) {
+    public R<Map<String, Object>> checkStatus(@PathVariable String uuid) {
         String key = "login:uuid:" + uuid;
         // 从Redis中获取二维码状态
         String json = redisTemplate.opsForValue().get(key);
@@ -75,7 +75,7 @@ public class LoginQrCodeController {
      */
     @ApiOperation("手机扫码确认登录")
     @PostMapping("/confirm")
-    public R confirmLogin(@RequestBody ConfirmDto dto) {
+    public R<Account> confirmLogin(@RequestBody ConfirmDto dto) {
         log.info("确认登录：" + dto);
         String key = "login:uuid:" + dto.getUuid();
         String json = redisTemplate.opsForValue().get(key);
