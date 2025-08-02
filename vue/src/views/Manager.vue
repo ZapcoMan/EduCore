@@ -112,7 +112,7 @@ import router from "@/router/index.js";
 import { reactive, ref, onMounted } from "vue";
 
 const data = reactive({
-  user: JSON.parse(localStorage.getItem("code_user") || "{}"),
+  user: JSON.parse(localStorage.getItem("account") || "{}"),
 });
 
 // 主题状态（Boolean，true=dark）
@@ -160,12 +160,12 @@ onMounted(() => {
 });
 
 const logout = () => {
-  localStorage.removeItem("code_user");
+  localStorage.removeItem("account");
   location.href = "/login";
 };
 
 const updateUser = () => {
-  data.user = JSON.parse(localStorage.getItem("code_user") || "{}");
+  data.user = JSON.parse(localStorage.getItem("account") || "{}");
 };
 </script>
 
