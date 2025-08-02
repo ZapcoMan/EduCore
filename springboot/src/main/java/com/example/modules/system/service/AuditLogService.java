@@ -1,5 +1,6 @@
 package com.example.modules.system.service;
 
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.AuditLog;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * 审计日志服务接口，定义了审计日志的操作
  */
-public interface AuditLogService extends BaseService<AuditLog, Long>{
+public interface AuditLogService extends BaseService<AuditLog, Long> {
 
     /**
      * 保存审计日志
