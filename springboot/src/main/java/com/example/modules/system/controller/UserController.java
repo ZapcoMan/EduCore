@@ -5,11 +5,13 @@ import com.example.common.result.R;
 
 import com.example.modules.system.entity.User;
 import com.example.modules.system.service.impl.UserServiceImpl;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户控制器类，处理与用户相关的RESTful API请求
@@ -33,7 +35,7 @@ public class UserController {
     @ApiOperation("添加新用户")
     @AuditLogRecord(action = "添加新用户", resource = "用户")
     @PostMapping("/add")
-    public R add(@RequestBody User user) {
+    public R<Void> add(@RequestBody User user) {
         userServiceImpl.add(user);
         return R.ok();
     }
@@ -47,7 +49,7 @@ public class UserController {
     @AuditLogRecord(action = "更新用户信息", resource = "用户")
     @ApiOperation("更新用户信息")
     @PutMapping("/update")
-    public R update(@RequestBody User user) {
+    public R<Void> update(@RequestBody User user) {
         userServiceImpl.update(user);
         return  R.ok();
     }
@@ -62,7 +64,7 @@ public class UserController {
     @AuditLogRecord(action = "删除用户", resource = "用户")
     @ApiOperation("根据用户ID删除用户")
     @DeleteMapping("/delete/{id}")
-    public R delete(@PathVariable Integer id) {
+    public R<Void> delete(@PathVariable Integer id) {
         userServiceImpl.deleteById(id);
         return  R.ok();
     }
@@ -76,7 +78,7 @@ public class UserController {
     @AuditLogRecord(action = "批量删除用户", resource = "用户")
     @ApiOperation("批量删除用户")
     @DeleteMapping("/deleteBatch")
-    public R deleteBatch(@RequestBody List<User> list) {
+    public R<Void> deleteBatch(@RequestBody List<User> list) {
         userServiceImpl.deleteBatch(list);
         return  R.ok();
     }
@@ -89,7 +91,7 @@ public class UserController {
     @AuditLogRecord(action = "查询所有用户", resource = "用户")
     @ApiOperation("查询所有用户")
     @GetMapping("/selectAll")
-    public R selectAll() {
+    public R<Void> selectAll() {
         List<User> userList = userServiceImpl.selectAll();
         return  R.ok();
     }
@@ -105,7 +107,7 @@ public class UserController {
     @AuditLogRecord(action = "分页查询用户信息", resource = "用户")
     @ApiOperation("分页查询用户信息")
     @GetMapping("/selectPage")
-    public R selectPage(@RequestParam(defaultValue = "1") Integer pageNum,
+    public R<Object> selectPage(@RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "10") Integer pageSize,
                              User user) {
         return  R.ok().data("pageInfo", userServiceImpl.selectPage(pageNum, pageSize, user));  // 返回的是分页的对象
