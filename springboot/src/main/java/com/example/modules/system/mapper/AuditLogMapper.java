@@ -1,5 +1,6 @@
 package com.example.modules.system.mapper;
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.AuditLog;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +13,7 @@ import java.util.List;
  * 审计日志Mapper接口，用于执行与审计日志相关的数据库操作
  */
 @Mapper
-public interface AuditLogMapper {
+public interface AuditLogMapper extends BaseMapper<AuditLog, Long> {
 
     /**
      * 插入一条审计日志记录
