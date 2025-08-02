@@ -27,6 +27,8 @@ public abstract class BaseServiceImpl<T, ID, M> implements BaseService<T, ID> {
     @Override
     public abstract List<T> selectAll();
 
+    public abstract void updateById(Long id);
+
     @Override
     public abstract void insert(T entity);
 
