@@ -1,6 +1,7 @@
 package com.example.modules.system.mapper;
 
 
+import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * 它是一个标记接口，通过@Mapper注解标识，用于让MyBatis框架识别
  */
 @Mapper
-public interface StudentMapper {
+public interface StudentMapper extends BaseMapper<Student, Long> {
     /**
      * 根据学生ID查找学生信息
      *
@@ -31,9 +32,8 @@ public interface StudentMapper {
      * 插入一个新的学生记录
      *
      * @param student 要插入的学生对象
-     * @return 返回插入操作影响的行数
      */
-    int insert(Student student);
+    void insert(Student student);
 
     /**
      * 更新一个学生记录
@@ -47,9 +47,8 @@ public interface StudentMapper {
      * 根据学生ID删除学生记录
      *
      * @param id 学生的唯一标识符
-     * @return 返回删除操作影响的行数
      */
-    int deleteById(Long id);
+    void deleteById(Long id);
 
     /**
      * 根据用户ID查找学生信息
