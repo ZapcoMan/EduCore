@@ -28,7 +28,7 @@ public class FileController {
     @ApiOperation("文件上传")
     @AuditLogRecord(action = "文件上传", resource = "文件")
     @PostMapping("/upload")
-    public R upload(@RequestParam("file") MultipartFile file) throws Exception {
+    public R<String> upload(@RequestParam("file") MultipartFile file) throws Exception {
         // 找到文件的位置
         String filePath = System.getProperty("user.dir") + "/files/";
         if (!FileUtil.isDirectory(filePath)) {
@@ -72,7 +72,7 @@ public class FileController {
     @ApiOperation("wang-editor编辑器文件上传接口")
     @AuditLogRecord(action = "wang-editor编辑器文件上传接口", resource = "文件上传")
     @PostMapping("/wang/upload")
-    public R wangEditorUpload(MultipartFile file) {
+    public R<Map<String, Object>> wangEditorUpload(MultipartFile file) {
         String flag = System.currentTimeMillis() + "";
         String fileName = file.getOriginalFilename();
         try {
