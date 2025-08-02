@@ -2,6 +2,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.enums.RoleEnum;
 import com.example.modules.system.entity.Account;
 import com.example.strategy.Context.RoleStrategyContext;
@@ -15,11 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-public class WebController {
+public class WebController extends BaseController<Account, String> {
 
 
     @Resource
     private RoleStrategyContext roleStrategyContext;
+
+    protected WebController(BaseService<Account, String> baseService) {
+        super(baseService);
+    }
 
     // 定义一个名为 hello 的接口，处理 GET 请求
     // 接口的路径，全局唯一的

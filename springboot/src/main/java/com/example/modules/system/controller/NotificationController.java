@@ -4,6 +4,8 @@ package com.example.modules.system.controller;
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
 
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Notification;
 import com.example.modules.system.service.NotificationService;
 import io.swagger.annotations.ApiOperation;
@@ -16,11 +18,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/notification")
-public class NotificationController {
+public class NotificationController extends BaseController<Notification, Long> {
     private static final Log log = LogFactory.getLog(NotificationController.class);
 
     @Resource
     private NotificationService notificationService;
+
+    protected NotificationController(BaseService<Notification, Long> baseService) {
+        super(baseService);
+    }
 
     @ApiOperation("发送通知")
     @AuditLogRecord(action = "发送通知", resource = "通知")
@@ -50,8 +56,8 @@ public class NotificationController {
     @ApiOperation("删除通知")
     @AuditLogRecord(action = "删除通知", resource = "通知")
     @DeleteMapping("/{id}")
-    public R<String> delete(@PathVariable Long id) {
+    public R<Void> delete(@PathVariable Long id) {
         notificationService.deleteNotification(id);
-        return R.success("deleted");
+        return R.ok();
     }
 }

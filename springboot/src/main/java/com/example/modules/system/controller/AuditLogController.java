@@ -3,6 +3,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.AuditLog;
 import com.example.modules.system.service.AuditLogService;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/audit")
-public class AuditLogController {
+public class AuditLogController extends BaseController<AuditLog, Long> {
 
     /**
      * 注入审计日志服务，用于处理审计日志的业务逻辑
@@ -34,6 +36,10 @@ public class AuditLogController {
      * 日志记录器，用于记录控制器类的日志信息
      */
     private static final Log log = LogFactory.getLog(AuditLogController.class);
+
+    protected AuditLogController(BaseService<AuditLog, Long> baseService) {
+        super(baseService);
+    }
 
     /**
      * 获取最近的审计日志

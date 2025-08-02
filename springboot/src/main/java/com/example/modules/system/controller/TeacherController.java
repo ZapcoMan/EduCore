@@ -3,6 +3,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Teacher;
 import com.example.modules.system.service.TeacherService;
 import io.swagger.annotations.ApiOperation;
@@ -18,13 +20,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/teacher")
-public class TeacherController {
+public class TeacherController extends BaseController<Teacher, Long> {
     private static final Log log = LogFactory.getLog(TeacherController.class);
     /**
      * 注入教师服务类，用于处理教师相关的业务逻辑
      */
     @Resource
     private TeacherService teacherService;
+
+    protected TeacherController(BaseService<Teacher, Long> baseService) {
+        super(baseService);
+    }
 
     /**
      * 获取教师列表

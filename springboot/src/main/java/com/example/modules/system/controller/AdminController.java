@@ -2,6 +2,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Admin;
 import com.example.modules.system.service.impl.AdminServiceImpl;
 import io.swagger.annotations.ApiOperation;
@@ -16,10 +18,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends BaseController<Admin, Integer> {
 
     @Resource
     private AdminServiceImpl adminServiceImpl;
+
+    protected AdminController(BaseService<Admin, Integer> baseService) {
+        super(baseService);
+    }
 
     /**
      * 添加管理员

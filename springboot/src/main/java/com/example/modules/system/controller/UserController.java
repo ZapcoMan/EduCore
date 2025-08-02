@@ -3,6 +3,8 @@ package com.example.modules.system.controller;
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
 
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.User;
 import com.example.modules.system.service.impl.UserServiceImpl;
 import com.github.pagehelper.PageInfo;
@@ -18,13 +20,17 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController<User, Integer> {
 
     /**
      * 注入用户服务层接口，用于执行用户相关的业务逻辑
      */
     @Resource
     UserServiceImpl userServiceImpl;
+
+    protected UserController(BaseService<User, Integer> baseService) {
+        super(baseService);
+    }
 
     /**
      * 添加新用户

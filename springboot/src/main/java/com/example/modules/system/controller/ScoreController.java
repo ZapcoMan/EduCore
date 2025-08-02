@@ -4,6 +4,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Score;
 import com.example.modules.system.service.ScoreService;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/score")
-public class ScoreController {
+public class ScoreController extends BaseController<Score, Long> {
 
     /**
      * 日志对象，用于记录日志信息
@@ -31,6 +33,10 @@ public class ScoreController {
      */
     @Resource
     private ScoreService scoreService;
+
+    protected ScoreController(BaseService<Score, Long> baseService) {
+        super(baseService);
+    }
 
     /**
      * 获取成绩列表
@@ -67,9 +73,10 @@ public class ScoreController {
     @ApiOperation("创建成绩")
     @AuditLogRecord(action = "Create Score", resource = "Score")
     @PostMapping
-    public void create(@RequestBody Score score) {
+    public R<Void> create(@RequestBody Score score) {
         log.info("Create Score = " + score);
         scoreService.create(score);
+        return R.ok();
     }
 
     /**
@@ -80,9 +87,10 @@ public class ScoreController {
     @ApiOperation("更新成绩信息")
     @AuditLogRecord(action = "Update Score", resource = "Score")
     @PutMapping
-    public void update(@RequestBody Score score) {
+    public R<Void> update(@RequestBody Score score) {
         log.info("Update Score = " + score);
         scoreService.update(score);
+        return R.ok();
     }
 
     /**
@@ -93,9 +101,10 @@ public class ScoreController {
     @ApiOperation("根据ID删除成绩")
     @AuditLogRecord(action = "Delete Score", resource = "Score")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public R<Void> delete(@PathVariable Long id) {
         log.info("Delete Score By ID = " + id);
         scoreService.delete(id);
+        return R.ok();
     }
 
     /**

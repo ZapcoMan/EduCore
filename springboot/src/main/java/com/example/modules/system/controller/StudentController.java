@@ -3,6 +3,8 @@ package com.example.modules.system.controller;
 
 import com.example.common.annotation.AuditLogRecord;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.entity.Student;
 import com.example.modules.system.service.StudentService;
 import io.swagger.annotations.ApiOperation;
@@ -18,13 +20,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/student")
-public class StudentController {
+public class StudentController  extends BaseController<Student, Long> {
     // 静态日志记录器
     private static final Log log = LogFactory.getLog(StudentController.class);
 
     // 学生服务接口的实例
     @Resource
     private StudentService studentService;
+
+    protected StudentController(BaseService<Student, Long> baseService) {
+        super(baseService);
+    }
 
     /**
      * 获取学生列表

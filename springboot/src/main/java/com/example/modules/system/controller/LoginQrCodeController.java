@@ -4,6 +4,8 @@ import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.common.result.R;
+import com.example.core.controller.BaseController;
+import com.example.core.service.BaseService;
 import com.example.modules.system.dto.ConfirmDto;
 import com.example.modules.system.entity.Account;
 import com.example.modules.system.service.AccountService;
@@ -22,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/qrcode")
-public class LoginQrCodeController {
+public class LoginQrCodeController extends BaseController<Account, String> {
 
 
     @Resource(name = "stringRedisTemplate")
@@ -31,6 +33,10 @@ public class LoginQrCodeController {
     @Resource
     private List<AccountService> accountServices;
     private static final Log log = LogFactory.getLog(LoginQrCodeController.class);
+
+    protected LoginQrCodeController(BaseService<Account, String> baseService) {
+        super(baseService);
+    }
 
     /**
      * 生成登录二维码的UUID
