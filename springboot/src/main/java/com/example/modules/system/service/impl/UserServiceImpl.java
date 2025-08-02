@@ -75,7 +75,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> 
      */
     public void deleteById(Integer id) {
         // 根据用户ID删除用户
-        userMapper.deleteById(id);
+        userMapper.deleteById(Long.valueOf(id));
     }
 
     /**
@@ -204,7 +204,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> 
      */
     public User selectById(String id) {
         // 根据用户ID查询用户信息
-        return userMapper.selectById(id);
+        return userMapper.selectById(Long.valueOf(id));
     }
 
     /**
@@ -229,7 +229,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> 
         // 根据当前用户的ID从数据库中选择用户信息
         User user = null;
         if (currentUser != null) {
-            user = userMapper.selectById(currentUser.getId().toString());
+            user = userMapper.selectById(Long.valueOf(currentUser.getId().toString()));
         }
 
         // 设置用户的密码为新的密码
