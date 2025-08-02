@@ -11,6 +11,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 学生控制器类，处理与学生相关的HTTP请求
  */
@@ -32,7 +34,7 @@ public class StudentController {
     @ApiOperation("获取学生列表")
     @AuditLogRecord(action = "Get StudentList", resource = "Student")
     @GetMapping
-    public R list() {
+    public R<List<Student>> list() {
         return R.success(studentService.list());
     }
 
@@ -45,7 +47,7 @@ public class StudentController {
     @ApiOperation("根据ID获取学生信息")
     @AuditLogRecord(action = "Get Student", resource = "Student")
     @GetMapping("/{id}")
-    public R get(@PathVariable Long id) {
+    public R<Student> get(@PathVariable Long id) {
         log.info("Get Student id = " + id);
         return R.success(studentService.getById(id));
     }
