@@ -1,7 +1,6 @@
-package com.example.modules.system.service.impl;
+package com.example.core.service.impl;
 
-import com.example.modules.system.entity.User;
-import com.example.modules.system.service.BaseService;
+import com.example.core.service.BaseService;
 
 import java.util.List;
 
