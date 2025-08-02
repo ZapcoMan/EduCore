@@ -242,6 +242,7 @@ EduCore/
 - **MySQL**
 - **Redis**
 - **Lombok**
+- **Swagger/OpenAPI** - API文档生成工具
 
 ### 前端
 
@@ -302,6 +303,32 @@ EduCore/
 
 ---
 
+## API文档
+
+本项目使用 Swagger/OpenAPI 来生成 API 文档，便于开发者理解和使用系统的各种接口。
+
+### 使用的技术
+
+项目中使用了以下与 API 文档相关的依赖：
+1. **SpringDoc OpenAPI** - 用于生成符合 OpenAPI 3.0 规范的 API 文档
+2. **Swagger Annotations** - 用于在代码中添加 API 文档注解
+3. **Springfox** - 另一个 Swagger 集成库（备用）
+
+### 访问方式
+
+启动项目后，可以通过以下 URL 访问 API 文档：
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+
+### 文档特点
+
+- 自动生成 API 文档，无需手动编写
+- 支持在线测试 API 接口
+- 提供详细的接口说明、参数说明和示例
+- 各个控制器方法都使用了 `@ApiOperation` 注解来描述接口功能
+
+---
+
 ## 最近更新
 
 ### 新增文件和功能
@@ -342,4 +369,7 @@ EduCore/
    - 统一了所有服务实现类的代码风格
    - 优化了方法参数和返回值的注释说明
 
-
+5. **API文档增强**：
+   - 添加了关于Swagger/OpenAPI的详细说明
+   - 介绍了API文档的访问方式和特点
+   - 列出了项目中使用的相关技术依赖
