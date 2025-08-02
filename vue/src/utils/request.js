@@ -2,7 +2,7 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import router from "../router"; // 确保你有 router 引入
 
-let baseURL = 'http://192.168.1.5:9991';
+let baseURL = 'http://192.168.1.9:9991';
 
 const request = axios.create({
     baseURL: baseURL,
@@ -12,7 +12,7 @@ const request = axios.create({
 // request 拦截器
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
-    let user = JSON.parse(localStorage.getItem('code_user') || '{}');
+    let user = JSON.parse(localStorage.getItem('account') || '{}');
     config.headers['token'] = user.token;
     return config;
 }, error => {
@@ -25,9 +25,9 @@ request.interceptors.response.use(
         // === 🔁 自动续签处理 ===
         const newToken = response.headers['renew-token'];
         if (newToken) {
-            const user = JSON.parse(localStorage.getItem('code_user') || '{}');
+            const user = JSON.parse(localStorage.getItem('account') || '{}');
             user.token = newToken;
-            localStorage.setItem('code_user', JSON.stringify(user));
+            localStorage.setItem('account', JSON.stringify(user));
         }
 
         let res = response.data;
