@@ -10,15 +10,20 @@ import org.springframework.stereotype.Service;
 
 /**
  * 通知服务实现类
+ * 实现了NotificationService接口，用于处理通知相关的业务逻辑
  */
 @Service
-public class NotificationServiceImpl implements NotificationService {
+public class NotificationServiceImpl extends BaseServiceImpl<Notification, Long, NotificationMapper> implements NotificationService {
 
     /**
      * 注入通知数据访问对象
      */
     @Autowired
     private NotificationMapper notificationMapper;
+
+    public NotificationServiceImpl(NotificationMapper mapper) {
+        super(mapper);
+    }
 
     /**
      * 发送通知
@@ -59,5 +64,66 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void deleteNotification(Long id) {
         notificationMapper.deleteLogical(id);
+    }
+
+    /**
+     * 根据ID查询通知信息
+     *
+     * @param id 通知ID
+     * @return Notification 通知信息
+     */
+    @Override
+    public Notification selectById(Long id) {
+        return null;
+    }
+
+    /**
+     * 查询所有通知信息
+     *
+     * @return List<Notification> 通知信息列表
+     */
+    @Override
+    public List<Notification> selectAll() {
+        return List.of();
+    }
+
+    /**
+     * 根据ID更新通知信息
+     *
+     * @param id 通知ID
+     */
+    @Override
+    public void updateById(Long id) {
+
+    }
+
+    /**
+     * 插入通知信息
+     *
+     * @param notification 通知信息
+     */
+    @Override
+    public void insert(Notification notification) {
+
+    }
+
+    /**
+     * 根据ID更新通知信息
+     *
+     * @param notification 通知信息
+     */
+    @Override
+    public void updateById(Notification notification) {
+
+    }
+
+    /**
+     * 根据ID删除通知信息
+     *
+     * @param id 通知ID
+     */
+    @Override
+    public void deleteById(Long id) {
+
     }
 }
