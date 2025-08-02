@@ -39,33 +39,6 @@ public class ScoreController extends BaseController<Score, Long> {
     }
 
     /**
-     * 获取成绩列表
-     *
-     * @return 成绩列表
-     */
-    @ApiOperation("获取成绩列表")
-    @AuditLogRecord(action = "Get ScoreList", resource = "Score")
-    @GetMapping
-    public R<List<Score>> list() {
-        log.info("Get ScoreList");
-        return R.success(scoreService.list());
-    }
-
-    /**
-     * 根据ID获取成绩信息
-     *
-     * @param id 成绩的ID
-     * @return 成绩信息的响应对象
-     */
-    @ApiOperation("根据ID获取成绩信息")
-    @AuditLogRecord(action = "Get Score", resource = "Score")
-    @GetMapping("/{id}")
-    public R<Score> get(@PathVariable Long id) {
-        log.info("Get Score By id = " + id);
-        return R.success(scoreService.getById(id));
-    }
-
-    /**
      * 创建成绩
      *
      * @param score 要创建的成绩对象

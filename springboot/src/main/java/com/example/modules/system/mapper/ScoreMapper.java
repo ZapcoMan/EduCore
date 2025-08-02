@@ -65,4 +65,7 @@ public interface ScoreMapper extends BaseMapper<Score, Long> {
      * @return 返回一个包含指定课程所有成绩记录的列表
      */
     List<Score> findByCourseId(Long courseId);
+
+    void updateById(Long id);
+
 }

@@ -33,33 +33,6 @@ public class CourseController extends BaseController<Course, Long> {
     }
 
     /**
-     * 获取课程列表
-     *
-     * @return R<List<Course>> 包含课程列表的响应对象
-     */
-    @ApiOperation("获取课程列表")
-    @AuditLogRecord(action = "Get CourseList", resource = "Course")
-    @GetMapping
-    public R<List<Course>> list() {
-        log.info("Get CourseList");
-        return R.success(courseService.list());  // 这里的list()返回List<Course>
-    }
-
-    /**
-     * 根据ID获取课程信息
-     *
-     * @param id 课程ID
-     * @return R<Course> 包含课程信息的响应对象
-     */
-    @ApiOperation("根据ID获取课程信息")
-    @AuditLogRecord(action = "Get Course", resource = "Course")
-    @GetMapping("/{id}")
-    public R<Course> get(@PathVariable Long id) {
-        log.info("Get Course id = " + id);
-        return R.success(courseService.getById(id));  // 返回单个 Course 对象
-    }
-
-    /**
      * 创建课程
      *
      * @param course 课程对象，包含要创建的课程信息

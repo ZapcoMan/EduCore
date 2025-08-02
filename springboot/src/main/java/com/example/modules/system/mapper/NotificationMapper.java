@@ -50,4 +50,6 @@ public interface NotificationMapper  extends BaseMapper<Notification, Long> {
      */
     @Delete("UPDATE notification SET status = 'DELETED' WHERE id = #{id}")
     void deleteLogical(@Param("id") Long id);
+
+    void updateById(Long id);
 }

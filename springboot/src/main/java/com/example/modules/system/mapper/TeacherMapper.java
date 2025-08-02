@@ -59,6 +59,6 @@ public interface TeacherMapper extends BaseMapper<Teacher, Long> {
      */
     Teacher findByUserId(Long userId);
 
-
+    void updateById(Long id);
 
 }

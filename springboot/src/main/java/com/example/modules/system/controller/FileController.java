@@ -22,11 +22,9 @@ import java.util.Map;
 */
 @RestController
 @RequestMapping("/files")
-public class FileController extends BaseController<Object, String> {
+public class FileController  {
 
-    protected FileController(BaseService<Object, String> baseService) {
-        super(baseService);
-    }
+
 
     /**
      * 文件上传

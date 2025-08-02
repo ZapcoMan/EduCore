@@ -17,10 +17,10 @@ import java.util.List;
 @Service
 public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMapper> implements CourseService {
     @Resource
-    private CourseMapper mapper;
+    private CourseMapper courseMapper;
 
-    public CourseServiceImpl(CourseMapper mapper) {
-        super(mapper);
+    public CourseServiceImpl(CourseMapper courseMapper) {
+        super(courseMapper);
     }
 
     /**
@@ -30,7 +30,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      * @return Course 课程信息
      */
     @Override
-    public Course getById(Long id) { return mapper.findById(id); }
+    public Course getById(Long id) { return courseMapper.findById(id); }
 
     /**
      * 获取所有课程列表
@@ -38,7 +38,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      * @return List<Course> 课程列表
      */
     @Override
-    public List<Course> list() { return mapper.findAll(); }
+    public List<Course> list() { return courseMapper.findAll(); }
 
     /**
      * 创建新的课程记录
@@ -46,7 +46,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      * @param course 课程信息
      */
     @Override
-    public void create(Course course) { mapper.insert(course); }
+    public void create(Course course) { courseMapper.insert(course); }
 
     /**
      * 更新课程信息
@@ -54,7 +54,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      * @param course 课程信息
      */
     @Override
-    public void update(Course course) { mapper.update(course); }
+    public void update(Course course) { courseMapper.update(course); }
 
     /**
      * 根据ID删除课程记录
@@ -62,7 +62,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      * @param id 课程ID
      */
     @Override
-    public void delete(Long id) { mapper.deleteById(id); }
+    public void delete(Long id) { courseMapper.deleteById(id); }
 
     /**
      * 根据ID查询课程信息
@@ -72,7 +72,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      */
     @Override
     public Course selectById(Long id) {
-        return null;
+        return courseMapper.selectById( id);
     }
 
     /**
@@ -102,7 +102,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      */
     @Override
     public void insert(Course course) {
-
+        courseMapper.insert(course);
     }
 
     /**
@@ -112,7 +112,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      */
     @Override
     public void updateById(Course course) {
-
+        courseMapper.updateById(course);
     }
 
     /**
@@ -122,6 +122,6 @@ public class CourseServiceImpl extends BaseServiceImpl<Course, Long, CourseMappe
      */
     @Override
     public void deleteById(Long id) {
-
+        courseMapper.deleteById( id);
     }
 }

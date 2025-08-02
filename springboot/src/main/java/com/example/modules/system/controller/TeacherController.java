@@ -40,23 +40,11 @@ public class TeacherController extends BaseController<Teacher, Long> {
     @ApiOperation("获取教师列表")
     @AuditLogRecord(action = "Get TeacherList", resource = "Teacher")
     @GetMapping
-    public R<List<Teacher>> list() {
+    public R<List<Teacher>> getAll() {
         return R.success(teacherService.list());
     }
 
-    /**
-     * 根据ID获取教师信息
-     *
-     * @param id 教师的ID
-     * @return 包含教师信息的响应对象
-     */
-    @ApiOperation("根据ID获取教师信息")
-    @AuditLogRecord(action = "Get Teacher", resource = "Teacher")
-    @GetMapping("/{id}")
-    public R<Teacher> get(@PathVariable Long id) {
-        log.info("Teacher id = " + id);
-        return R.success(teacherService.getById(id));
-    }
+
 
     /**
      * 创建教师

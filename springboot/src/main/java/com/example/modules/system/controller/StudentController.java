@@ -32,31 +32,7 @@ public class StudentController  extends BaseController<Student, Long> {
         super(baseService);
     }
 
-    /**
-     * 获取学生列表
-     *
-     * @return 包含学生列表的响应对象
-     */
-    @ApiOperation("获取学生列表")
-    @AuditLogRecord(action = "Get StudentList", resource = "Student")
-    @GetMapping
-    public R<List<Student>> list() {
-        return R.success(studentService.list());
-    }
 
-    /**
-     * 根据ID获取学生信息
-     *
-     * @param id 学生的ID
-     * @return 包含学生信息的响应对象
-     */
-    @ApiOperation("根据ID获取学生信息")
-    @AuditLogRecord(action = "Get Student", resource = "Student")
-    @GetMapping("/{id}")
-    public R<Student> get(@PathVariable Long id) {
-        log.info("Get Student id = " + id);
-        return R.success(studentService.getById(id));
-    }
 
     /**
      * 创建新学生
@@ -66,9 +42,10 @@ public class StudentController  extends BaseController<Student, Long> {
     @ApiOperation("创建新学生")
     @AuditLogRecord(action = "Create Student", resource = "Student")
     @PostMapping
-    public void create(@RequestBody Student student) {
+    public R<Void> create(@RequestBody Student student) {
         log.info("Create Student = " + student);
         studentService.create(student);
+        return R.ok();
     }
 
     /**
@@ -79,9 +56,10 @@ public class StudentController  extends BaseController<Student, Long> {
     @ApiOperation("更新学生信息")
     @AuditLogRecord(action = "Update Student", resource = "Student")
     @PutMapping
-    public void update(@RequestBody Student student) {
+    public R<Void> update(@RequestBody Student student) {
         log.info("Update Student = " + student);
         studentService.update(student);
+        return R.ok();
     }
 
     /**
@@ -92,9 +70,10 @@ public class StudentController  extends BaseController<Student, Long> {
     @ApiOperation("删除学生")
     @AuditLogRecord(action = "Delete Student", resource = "Student")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public R<Void> delete(@PathVariable Long id) {
         log.info("Delete Student By ID = " + id);
         studentService.delete(id);
+        return R.ok();
     }
 
     /**

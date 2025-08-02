@@ -58,7 +58,7 @@ public class AuditLogServiceImpl extends BaseServiceImpl<AuditLog, Long, AuditLo
      */
     @Override
     public AuditLog selectById(Long id) {
-        return null;
+        return auditLogMapper.selectById(id);
     }
 
 
@@ -79,7 +79,7 @@ public class AuditLogServiceImpl extends BaseServiceImpl<AuditLog, Long, AuditLo
      */
     @Override
     public void updateById(Long id) {
-
+        auditLogMapper.updateById(id);
     }
 
     /**

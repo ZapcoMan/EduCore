@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/qrcode")
-public class LoginQrCodeController extends BaseController<Account, String> {
+public class LoginQrCodeController  {
 
 
     @Resource(name = "stringRedisTemplate")
@@ -34,9 +34,7 @@ public class LoginQrCodeController extends BaseController<Account, String> {
     private List<AccountService> accountServices;
     private static final Log log = LogFactory.getLog(LoginQrCodeController.class);
 
-    protected LoginQrCodeController(BaseService<Account, String> baseService) {
-        super(baseService);
-    }
+
 
     /**
      * 生成登录二维码的UUID

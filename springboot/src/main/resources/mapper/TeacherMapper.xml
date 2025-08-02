@@ -33,6 +33,14 @@
                            title=#{title}
         WHERE id=#{id}
     </update>
+    <update id="updateById">
+        UPDATE teacher SET
+                           user_id= #{userId},
+                           teacher_no= #{teacherNo},
+                           gender= #{gender},
+                           title= #{title}
+        WHERE id= #{id}
+    </update>
 
     <delete id="deleteById" parameterType="long">
         DELETE FROM teacher WHERE id=#{id}

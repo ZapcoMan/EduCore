@@ -32,6 +32,13 @@
                          score = #{score}
         WHERE id = #{id}
     </update>
+    <update id="updateById">
+        UPDATE score SET
+                         student_id = #{studentId},
+                         course_id = #{courseId},
+                         score = #{score}
+        WHERE id = #{id}
+    </update>
 
     <delete id="deleteById" parameterType="long">
         DELETE FROM score WHERE id = #{id}

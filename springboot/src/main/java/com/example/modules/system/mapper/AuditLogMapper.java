@@ -2,10 +2,7 @@ package com.example.modules.system.mapper;
 
 import com.example.core.mapper.BaseMapper;
 import com.example.modules.system.entity.AuditLog;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -32,5 +29,8 @@ public interface AuditLogMapper extends BaseMapper<AuditLog, Long> {
      */
     @Select("SELECT * FROM audit_log ORDER BY created_at DESC LIMIT #{limit}")
     List<AuditLog> selectRecent(@Param("limit") int limit);
+
+    @Update("UPDATE audit_log SET username = #{username}, action = #{action}, resource = #{resource}, ip_address = #{ipAddress}, details = #{details}, created_at = NOW() WHERE id = #{id}")
+    void updateById(Long id);
 }
 

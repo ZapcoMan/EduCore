@@ -95,7 +95,7 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher, Long, TeacherMa
      */
     @Override
     public Teacher selectById(Long id) {
-        return null;
+        return teacherMapper.selectById(id);
     }
 
     /**
@@ -115,7 +115,7 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher, Long, TeacherMa
      */
     @Override
     public void updateById(Long id) {
-
+        teacherMapper.updateById(id);
     }
 
     /**
@@ -125,7 +125,7 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher, Long, TeacherMa
      */
     @Override
     public void insert(Teacher teacher) {
-
+        teacherMapper.insert(teacher);
     }
 
     /**
@@ -135,7 +135,7 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher, Long, TeacherMa
      */
     @Override
     public void updateById(Teacher teacher) {
-
+        teacherMapper.updateById(teacher);
     }
 
     /**
@@ -145,6 +145,6 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher, Long, TeacherMa
      */
     @Override
     public void deleteById(Long id) {
-
+        teacherMapper.deleteById(id);
     }
 }

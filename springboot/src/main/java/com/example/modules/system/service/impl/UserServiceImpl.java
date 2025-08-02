@@ -260,7 +260,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> 
      */
     @Override
     public void updateById(User user) {
-
+        userMapper.updateById(user);
     }
 
 
@@ -271,7 +271,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer, UserMapper> 
      */
     @Override
     public void deleteById(Long id) {
-
+        userMapper.deleteById( id);
     }
 
 

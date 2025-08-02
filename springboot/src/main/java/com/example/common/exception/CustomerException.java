@@ -1,8 +1,11 @@
 package com.example.common.exception;
 
 import com.example.common.result.ResultCodeEnum;
+import com.example.modules.system.controller.LoginQrCodeController;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -12,6 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class CustomerException extends RuntimeException {
+    private static final Log log = LogFactory.getLog(CustomerException.class);
     /**
      * 异常代码，用于标识异常类型
      */
@@ -41,5 +45,11 @@ public class CustomerException extends RuntimeException {
     public CustomerException(String msg) {
         this.code = String.valueOf(ResultCodeEnum.UNKNOWN_ERROR.getCode());
         this.msg = msg;
+    }
+
+    public CustomerException(String code, Exception e) {
+        this.code = code;
+        this.msg = e.getMessage();
+        log.warn(e.getMessage());
     }
 }

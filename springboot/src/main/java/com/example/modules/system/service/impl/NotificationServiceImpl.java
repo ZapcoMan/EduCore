@@ -75,7 +75,7 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Long,
      */
     @Override
     public Notification selectById(Long id) {
-        return null;
+        return notificationMapper.selectById(id);
     }
 
     /**
@@ -95,7 +95,7 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Long,
      */
     @Override
     public void updateById(Long id) {
-
+        notificationMapper.updateById(id);
     }
 
     /**
@@ -105,7 +105,7 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Long,
      */
     @Override
     public void insert(Notification notification) {
-
+        notificationMapper.insert(notification);
     }
 
     /**
@@ -115,7 +115,7 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Long,
      */
     @Override
     public void updateById(Notification notification) {
-
+        notificationMapper.updateById(notification);
     }
 
     /**
@@ -125,6 +125,6 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Long,
      */
     @Override
     public void deleteById(Long id) {
-
+        notificationMapper.deleteById(id);
     }
 }

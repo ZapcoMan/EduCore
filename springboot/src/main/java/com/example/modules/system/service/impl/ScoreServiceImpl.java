@@ -105,7 +105,7 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score, Long, ScoreMapper> 
      */
     @Override
     public Score selectById(Long id) {
-        return null;
+        return scoreMapper.findById(id);
     }
 
     /**
@@ -123,7 +123,7 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score, Long, ScoreMapper> 
      */
     @Override
     public void updateById(Long id) {
-
+        scoreMapper.updateById(id);
     }
 
     /**
@@ -133,7 +133,7 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score, Long, ScoreMapper> 
      */
     @Override
     public void insert(Score score) {
-
+        scoreMapper.insert(score);
     }
 
     /**
@@ -143,7 +143,7 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score, Long, ScoreMapper> 
      */
     @Override
     public void updateById(Score score) {
-
+        scoreMapper.updateById(score);
     }
 
     /**
@@ -153,6 +153,6 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score, Long, ScoreMapper> 
      */
     @Override
     public void deleteById(Long id) {
-
+        scoreMapper.deleteById(id);
     }
 }
