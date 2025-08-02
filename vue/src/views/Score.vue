@@ -75,7 +75,7 @@ import {ElMessage, ElMessageBox} from 'element-plus'
 
 // 当前登录用户信息
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('code_user') || "{}")
+  user: JSON.parse(localStorage.getItem('account') || "{}")
 })
 const isStudent = data.user.role === 'USER'
 
