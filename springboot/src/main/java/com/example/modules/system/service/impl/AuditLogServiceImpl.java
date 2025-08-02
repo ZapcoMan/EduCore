@@ -13,7 +13,7 @@ import com.example.modules.system.service.AuditLogService;
  * 该类负责处理审计日志的相关业务逻辑，如保存日志和获取最近的日志记录
  */
 @Service
-public class AuditLogServiceImpl implements AuditLogService {
+public class AuditLogServiceImpl extends  BaseServiceImpl<AuditLog, Long, AuditLogMapper> implements AuditLogService {
 
     /**
      * 审计日志数据访问对象
@@ -21,6 +21,10 @@ public class AuditLogServiceImpl implements AuditLogService {
      */
     @Resource
     private AuditLogMapper auditLogMapper;
+
+    public AuditLogServiceImpl(AuditLogMapper mapper) {
+        super(mapper);
+    }
 
     /**
      * 保存审计日志
@@ -43,5 +47,67 @@ public class AuditLogServiceImpl implements AuditLogService {
     @Override
     public List<AuditLog> getRecentLogs(int limit) {
         return auditLogMapper.selectRecent(limit);
+    }
+
+    /**
+     * 根据ID查询审计日志信息
+     *
+     * @param id 审计日志ID
+     * @return AuditLog 审计日志信息
+     */
+    @Override
+    public AuditLog selectById(Long id) {
+        return null;
+    }
+
+
+    /**
+     * 查询所有审计日志信息
+     *
+     * @return List<AuditLog> 审计日志信息列表
+     */
+    @Override
+    public List<AuditLog> selectAll() {
+        return List.of();
+    }
+
+    /**
+     * 根据ID更新审计日志信息
+     *
+     * @param id 审计日志ID
+     */
+    @Override
+    public void updateById(Long id) {
+
+    }
+
+    /**
+     * 插入审计日志信息
+     *
+     * @param auditLog 审计日志信息
+     */
+    @Override
+    public void insert(AuditLog auditLog) {
+
+    }
+
+    /**
+     * 根据ID更新审计日志信息
+     *
+     * @param auditLog 审计日志信息
+     */
+    @Override
+    public void updateById(AuditLog auditLog) {
+
+    }
+
+    /**
+     * 根据ID删除审计日志信息
+     *
+     * @param id 审计日志ID
+     */
+    @Override
+    public void deleteById(Long id) {
+
     }
 }
