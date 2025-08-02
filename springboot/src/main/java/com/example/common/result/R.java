@@ -1,125 +1,114 @@
 package com.example.common.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 封装返回结果的类，使用 Lombok 注解减少 boilerplate 代码
- */
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL) // 只序列化非 null 的字段
-public class R {
-    // 表示操作是否成功
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(description = "统一响应封装类")
+public class R<T> {
+
+    @Schema(description = "是否成功")
     private Boolean success;
-    // 状态码
+
+    @Schema(description = "响应状态码")
     private Integer code;
-    // 状态信息
+
+    @Schema(description = "响应消息")
     private String message;
 
-    // 存放数据的 Object
-    private Object data;
+    @Schema(description = "响应数据")
+    private T data;
 
-    // 存放数据的 Map
-    private Map<String, Object> dataMap = new HashMap<>();
+    @Schema(description = "响应 Map 数据")
+    private Map<String, Object> dataMap;
 
-    // 构造器私有，防止外部实例化
     private R() {}
 
-    // 通用返回成功的方法
-    public static R ok() {
-        R r = new R();
+    /** --------- 构造方法 --------- **/
+
+    public static <T> R<T> ok() {
+        R<T> r = new R<>();
         r.setSuccess(ResultCodeEnum.SUCCESS.getSuccess());
         r.setCode(ResultCodeEnum.SUCCESS.getCode());
         r.setMessage(ResultCodeEnum.SUCCESS.getMessage());
         return r;
     }
 
-    public static R success(Object data) {
-        R result = new R();
-        result.setCode(ResultCodeEnum.SUCCESS.getCode());
-        result.setData(data);
-        result.setMessage("请求成功");
-        return result;
+    public static <T> R<T> ok(T data) {
+        R<T> r = ok();
+        r.setData(data);
+        return r;
     }
 
-    // 通用返回失败的方法，用于未知错误
-    public static R error() {
-        R r = new R();
+    public static <T> R<T> error() {
+        R<T> r = new R<>();
         r.setSuccess(ResultCodeEnum.UNKNOWN_ERROR.getSuccess());
         r.setCode(ResultCodeEnum.UNKNOWN_ERROR.getCode());
         r.setMessage(ResultCodeEnum.UNKNOWN_ERROR.getMessage());
         return r;
     }
 
-    public static R error(Integer code, String msg) {
-        R result = new R();
-        result.setCode(code);
-        result.setMessage(msg);
-        return result;
+    public static <T> R<T> error(String message) {
+        R<T> r = error();
+        r.setMessage(message);
+        return r;
     }
 
-    public static R error(String msg) {
-        R result = new R();
-        result.setCode(ResultCodeEnum.UNKNOWN_ERROR.getCode());
-        result.setMessage(msg);
-        return result;
+    public static <T> R<T> error(Integer code, String msg) {
+        R<T> r = new R<>();
+        r.setSuccess(false);
+        r.setCode(code);
+        r.setMessage(msg);
+        return r;
     }
 
-    // 设置结果的方法，接受一个结果枚举作为参数
-    public static R setResult(ResultCodeEnum result) {
-        R r = new R();
+    public static <T> R<T> setResult(ResultCodeEnum result) {
+        R<T> r = new R<>();
         r.setSuccess(result.getSuccess());
         r.setCode(result.getCode());
         r.setMessage(result.getMessage());
         return r;
     }
 
-    /**
-     * ------------使用链式编程，返回类本身-----------
-     **/
+    /** --------- 链式编程支持 --------- **/
 
-    // 自定义返回数据的方法，接受一个 Map 作为参数
-    public R data(Map<String, Object> map) {
-        this.setData(null); // 清空 data
-        this.setDataMap(map);
-        return this;
-    }
-
-    // 通用设置data的方法，接受一个键值对作为参数
-    public R data(String key, Object value) {
-        this.setData(null); // 清空 data
-        this.dataMap.put(key, value);
-        return this;
-    }
-
-    // 自定义状态信息的方法
-    public R message(String message) {
-        this.setMessage(message);
-        return this;
-    }
-
-    // 自定义状态码的方法
-    public R code(Integer code) {
-        this.setCode(code);
-        return this;
-    }
-
-    // 自定义返回结果的方法
-    public R success(Boolean success) {
+    public R<T> success(Boolean success) {
         this.setSuccess(success);
         return this;
     }
 
-    // 自定义序列化：只返回 data 或 dataMap，不同时返回
-//    public Map<String, Object> getJsonResponse() {
-//        if (this.data != null) {
-//            return Map.of("data", this.data);
-//        } else if (!this.dataMap.isEmpty()) {
-//            return Map.of("dataMap", this.dataMap);
-//        }
-//        return new HashMap<>();
-//    }
+    public R<T> code(Integer code) {
+        this.setCode(code);
+        return this;
+    }
+
+    public R<T> message(String message) {
+        this.setMessage(message);
+        return this;
+    }
+
+    public R<T> data(T data) {
+        this.setData(data);
+        return this;
+    }
+
+    public R<T> data(String key, Object value) {
+        this.setData(null); // 保证 data 与 dataMap 不共存
+        if (this.dataMap == null) {
+            this.dataMap = new HashMap<>();
+        }
+        this.dataMap.put(key, value);
+        return this;
+    }
+
+    public R<T> data(Map<String, Object> map) {
+        this.setData(null); // 清空 data，切换为 dataMap 模式
+        this.setDataMap(map);
+        return this;
+    }
 }
