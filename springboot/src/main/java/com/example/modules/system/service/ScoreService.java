@@ -5,7 +5,7 @@ import com.example.modules.system.entity.Score;
 
 import java.util.List;
 
-public interface ScoreService {
+public interface ScoreService  extends BaseService<Score, Long>{
     Score getById(Long id);
 
     List<Score> list();
