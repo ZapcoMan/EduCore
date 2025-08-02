@@ -2,6 +2,7 @@ package com.example.modules.system.controller;
 
 
 import com.example.common.annotation.AuditLogRecord;
+import com.example.common.result.R;
 import com.example.modules.system.entity.AuditLog;
 import com.example.modules.system.service.AuditLogService;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +18,7 @@ import java.util.List;
 
 /**
  * 审计日志控制器类，提供审计日志相关的API接口
+ * 该控制器用于处理系统审计日志的查询和管理操作
  */
 @RestController
 @RequestMapping("/api/audit")
@@ -35,15 +37,16 @@ public class AuditLogController {
 
     /**
      * 获取最近的审计日志
+     * 该方法用于查询系统中最近产生的审计日志记录，按照时间倒序排列
      *
      * @param limit 限制获取的日志数量，默认为20条
-     * @return 返回最近的审计日志列表
+     * @return 返回最近的审计日志列表，封装在R对象中
      */
     @ApiOperation("获取最近的审计日志")
     @AuditLogRecord(action = "获取最近的审计日志" ,resource = "审计日志")
     @GetMapping("/recent")
-    public List<AuditLog> getRecentLogs(@RequestParam(defaultValue = "20") int limit) {
+    public R<List<AuditLog>> getRecentLogs(@RequestParam(defaultValue = "20") int limit) {
         log.info("Getting recent logs with limit: " + limit);
-        return auditLogService.getRecentLogs(limit);
+        return R.success(auditLogService.getRecentLogs(limit));
     }
 }
