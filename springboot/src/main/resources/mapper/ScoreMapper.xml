@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.modules.system.mapper.ScoreMapper">
+
+    <resultMap id="ScoreResultMap" type="com.example.modules.system.entity.Score">
+        <id property="id" column="id"/>
+        <result property="studentId" column="student_id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="score" column="score"/>
+    </resultMap>
+
+    <select id="findById" resultMap="ScoreResultMap" parameterType="long">
+        SELECT * FROM score WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="ScoreResultMap">
+        SELECT * FROM score
+    </select>
+
+    <insert id="insert" parameterType="com.example.modules.system.entity.Score" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO score (student_id, course_id, score)
+        VALUES (#{studentId}, #{courseId}, #{score})
+    </insert>
+
+    <update id="update" parameterType="com.example.modules.system.entity.Score">
+        UPDATE score SET
+                         student_id = #{studentId},
+                         course_id = #{courseId},
+                         score = #{score}
+        WHERE id = #{id}
+    </update>
+    <update id="updateById">
+        UPDATE score SET
+                         student_id = #{studentId},
+                         course_id = #{courseId},
+                         score = #{score}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM score WHERE id = #{id}
+    </delete>
+
+    <select id="findByStudentId" resultMap="ScoreResultMap" parameterType="long">
+        SELECT * FROM score WHERE student_id = #{studentId}
+    </select>
+
+    <select id="findByCourseId" resultMap="ScoreResultMap" parameterType="long">
+        SELECT * FROM score WHERE course_id = #{courseId}
+    </select>
+
+</mapper>

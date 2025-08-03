@@ -1,0 +1,34 @@
+server:
+  port: 9991
+
+# 数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    # 建议将密码移至环境变量或外部配置文件中，避免敏感信息泄露
+    password: admin
+    url: jdbc:mysql://localhost:3307/learnscore?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=${ALLOW_PUBLIC_KEY_RETRIEVAL:false}
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      # 建议生产环境中设置Redis密码
+      password:
+      database: 0
+
+# 配置mybatis实体和xml映射
+mybatis:
+  # 映射xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 配置日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.example.modules.system.entity
+
+jwt:
+  # JWT密钥，生产环境中必须通过环境变量JWT_SECRET配置，不能使用默认值
+  secret: ${JWT_SECRET:your-very-secure-secret-key-change-in-production}
+  access-token-expire: 3600000        # 1小时毫秒数
+  refresh-token-expire: 604800000     # 7天毫秒数

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.modules.system.mapper.StudentMapper">
+
+    <resultMap id="StudentResultMap" type="com.example.modules.system.entity.Student">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="studentNo" column="student_no"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="className" column="class_name"/>
+    </resultMap>
+
+    <select id="findById" parameterType="long" resultMap="StudentResultMap">
+        SELECT * FROM student WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="StudentResultMap">
+        SELECT * FROM student
+    </select>
+
+    <insert id="insert" parameterType="com.example.modules.system.entity.Student" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO student (user_id, student_no, gender, age, class_name)
+        VALUES (#{userId}, #{studentNo}, #{gender}, #{age}, #{className})
+    </insert>
+
+    <update id="update" parameterType="com.example.modules.system.entity.Student">
+        UPDATE student SET
+                           user_id=#{userId},
+                           student_no=#{studentNo},
+                           gender=#{gender},
+                           age=#{age},
+                           class_name=#{className}
+        WHERE id=#{id}
+    </update>
+    <update id="updateById">
+        UPDATE student SET
+                           user_id= #{userId},
+                           student_no= #{studentNo},
+                           gender= #{gender},
+                           age= #{age},
+                           class_name= #{className}
+        WHERE id= #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM student WHERE id=#{id}
+    </delete>
+
+    <select id="findByUserId" parameterType="long" resultMap="StudentResultMap">
+        SELECT * FROM student WHERE user_id = #{userId}
+    </select>
+    <select id="selectById" resultType="com.example.modules.system.entity.Student">
+        SELECT * FROM student WHERE id = #{id}
+    </select>
+    <select id="selectAll" resultType="com.example.modules.system.entity.Student">
+        SELECT * FROM student
+    </select>
+
+</mapper>

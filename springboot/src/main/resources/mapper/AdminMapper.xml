@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义一个Mapper，命名空间为com.example.mapper.AdminMapper -->
+<mapper namespace="com.example.modules.system.mapper.AdminMapper">
+
+    <!-- 定义一个查询操作，ID为selectAll，返回类型为com.example.entity.Admin -->
+    <select id="selectAll" resultType="com.example.modules.system.entity.Admin">
+        <!-- 查询admin表中的所有列，并根据条件进行筛选 -->
+        select * from `admin`
+        <where>
+            <!-- 如果username不为空，则按username模糊查询 -->
+            <if test="username != null">username like concat('%', #{username}, '%')</if>
+            <!-- 如果name不为空，则按name模糊查询 -->
+            <if test="name != null">and name like concat('%', #{name}, '%')</if>  <!-- 相当于 name like '%1%' -->
+        </where>
+        <!-- 根据id降序排列结果 -->
+        order by id desc
+    </select>
+
+    <!-- 定义一个插入操作，ID为insert -->
+    <insert id="insert">
+        <!-- 向admin表中插入一条新记录 -->
+        insert into `admin` (username, password, role, name ,avatar)
+        values(#{username} , #{password}, #{role}, #{name}, #{avatar})
+    </insert>
+
+    <!-- 定义一个更新操作，ID为updateById -->
+    <update id="updateById">
+        <!-- 更新admin表中的一条记录，条件是id匹配 -->
+        update `admin` set username = #{username}, password = #{password}, role = #{role}, name = #{name}, avatar = #{avatar}
+        where id = #{id}
+    </update>
+
+</mapper>

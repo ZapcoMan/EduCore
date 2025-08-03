@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义一个Mapper，命名空间为com.example.mapper.UserMapper -->
+<mapper namespace="com.example.modules.system.mapper.UserMapper">
+
+    <!-- 定义一个查询方法，id为selectAll，返回类型为com.example.entity.User -->
+    <select id="selectAll" resultType="com.example.modules.system.entity.User">
+        <!-- 查询user表中的所有列 -->
+        select * from `user`
+        <!-- 动态生成where条件 -->
+        <where>
+            <!-- 如果username不为空，则添加模糊查询条件 -->
+            <if test="username != null">username like concat('%', #{username}, '%')</if>
+            <!-- 如果name不为空，则添加模糊查询条件 -->
+            <if test="name != null">and name like concat('%', #{name}, '%')</if>  <!-- 相当于 name like '%1%' -->
+        </where>
+        <!-- 按照id降序排列 -->
+        order by id desc
+    </select>
+
+    <!-- 定义一个插入方法，id为insert -->
+    <insert id="insert">
+        <!-- 向user表中插入数据 -->
+        insert into `user` (username, password, role, name, avatar)
+        <!-- 使用占位符插入数据 -->
+        values(#{username} , #{password}, #{role}, #{name}, #{avatar})
+    </insert>
+
+    <!-- 定义一个更新方法，id为updateById -->
+    <update id="updateById">
+        <!-- 更新user表中的数据 -->
+        update `user` set username = #{username}, password = #{password}, role = #{role}, name = #{name}, avatar = #{avatar}
+        <!-- 根据id进行条件更新 -->
+        where id = #{id}
+    </update>
+    <update id="updatePassword">
+        UPDATE user SET password = #{password} WHERE username = #{username}
+    </update>
+</mapper>
