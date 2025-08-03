@@ -18,7 +18,7 @@
 - [项目概述](#项目概述)
 - [项目结构](#项目结构)
     - [后端 (`springboot`)](#后端-springboot)
-    - [前端 ([vue](file://C:\Users\Administrator\Desktop\EduCore\vue\src\App.vue))](#前端-vue)
+    - [前端 ([vue])](#前端 ([vue]))
 - [技术栈](#技术栈)
 - [功能列表](#功能列表)
 - [数据库设计](#数据库设计)
@@ -185,7 +185,7 @@ EduCore/
 
 ---
 
-### 前端 ([vue](file://C:\Users\Administrator\Desktop\EduCore\vue\src\App.vue))
+### 前端 ([vue])
 
 #### 主要模块
 
