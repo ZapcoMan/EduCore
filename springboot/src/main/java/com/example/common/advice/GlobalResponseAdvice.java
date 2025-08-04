@@ -16,6 +16,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 全局响应处理类，用于统一封装Controller返回结果
+ * 拦截所有Controller的响应，将其封装为统一的R类型返回结果
+ */
 @RestControllerAdvice(basePackages = "com.example") // ✅ 限定只拦截本项目
 public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 
@@ -34,12 +38,28 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
             "/files/**"
     );
 
+    /**
+     * 判断当前响应是否支持统一封装处理
+     * @param returnType 控制器方法的返回类型信息
+     * @param converterType 用于响应转换的HttpMessageConverter类型
+     * @return 是否支持统一封装处理，true表示支持
+     */
     @Override
     public boolean supports(@Nullable MethodParameter returnType,
                             @Nullable Class<? extends HttpMessageConverter<?>> converterType) {
         return true; // 统一处理所有 Controller 的响应（但下方具体做排除）
     }
 
+    /**
+     * 在响应体写入前进行处理，统一封装返回结果
+     * @param body 原始响应体内容
+     * @param returnType 控制器方法的返回类型信息
+     * @param selectedContentType 选择的内容类型
+     * @param selectedConverterType 选择的HttpMessageConverter类型
+     * @param request 服务器HTTP请求信息
+     * @param response 服务器HTTP响应信息
+     * @return 处理后的响应体内容
+     */
     @Override
     public Object beforeBodyWrite(Object body,
                                   @Nullable MethodParameter returnType,
