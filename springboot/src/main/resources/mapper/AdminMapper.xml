@@ -5,7 +5,14 @@
 <!-- 定义一个Mapper，命名空间为com.example.mapper.AdminMapper -->
 <mapper namespace="com.example.modules.system.mapper.AdminMapper">
 
-    <!-- 定义一个查询操作，ID为selectAll，返回类型为com.example.entity.Admin -->
+    <!--
+        查询所有管理员信息
+        根据提供的条件进行筛选，支持按用户名和姓名模糊查询
+        查询结果按ID降序排列
+        @param username 用户名（可选），用于模糊匹配
+        @param name 姓名（可选），用于模糊匹配
+        @return Admin对象列表
+     -->
     <select id="selectAll" resultType="com.example.modules.system.entity.Admin">
         <!-- 查询admin表中的所有列，并根据条件进行筛选 -->
         select * from `admin`
@@ -19,14 +26,29 @@
         order by id desc
     </select>
 
-    <!-- 定义一个插入操作，ID为insert -->
+    <!--
+        插入新的管理员信息
+        @param username 用户名
+        @param password 密码
+        @param role 角色
+        @param name 姓名
+        @param avatar 头像
+     -->
     <insert id="insert">
         <!-- 向admin表中插入一条新记录 -->
         insert into `admin` (username, password, role, name ,avatar)
         values(#{username} , #{password}, #{role}, #{name}, #{avatar})
     </insert>
 
-    <!-- 定义一个更新操作，ID为updateById -->
+    <!--
+        根据ID更新管理员信息
+        @param id 管理员ID
+        @param username 用户名
+        @param password 密码
+        @param role 角色
+        @param name 姓名
+        @param avatar 头像
+     -->
     <update id="updateById">
         <!-- 更新admin表中的一条记录，条件是id匹配 -->
         update `admin` set username = #{username}, password = #{password}, role = #{role}, name = #{name}, avatar = #{avatar}
