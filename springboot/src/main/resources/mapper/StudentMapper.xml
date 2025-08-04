@@ -4,6 +4,10 @@
 
 <mapper namespace="com.example.modules.system.mapper.StudentMapper">
 
+    <!--
+        定义Student实体类与数据库表的映射关系
+        将数据库字段映射到Student实体类的属性
+     -->
     <resultMap id="StudentResultMap" type="com.example.modules.system.entity.Student">
         <id property="id" column="id"/>
         <result property="userId" column="user_id"/>
@@ -13,19 +17,37 @@
         <result property="className" column="class_name"/>
     </resultMap>
 
+    <!--
+        根据ID查询学生信息
+        @param id 学生记录ID
+        @return Student对象
+     -->
     <select id="findById" parameterType="long" resultMap="StudentResultMap">
         SELECT * FROM student WHERE id = #{id}
     </select>
 
+    <!--
+        查询所有学生信息
+        @return Student对象列表
+     -->
     <select id="findAll" resultMap="StudentResultMap">
         SELECT * FROM student
     </select>
 
+    <!--
+        插入新的学生记录
+        @param student Student对象，包含用户ID、学号、性别、年龄和班级名称
+        @return 插入记录的ID
+     -->
     <insert id="insert" parameterType="com.example.modules.system.entity.Student" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO student (user_id, student_no, gender, age, class_name)
         VALUES (#{userId}, #{studentNo}, #{gender}, #{age}, #{className})
     </insert>
 
+    <!--
+        更新学生记录
+        @param student Student对象，包含ID和更新后的信息
+     -->
     <update id="update" parameterType="com.example.modules.system.entity.Student">
         UPDATE student SET
                            user_id=#{userId},
@@ -35,6 +57,16 @@
                            class_name=#{className}
         WHERE id=#{id}
     </update>
+
+    <!--
+        根据ID更新学生记录
+        @param id 学生记录ID
+        @param userId 用户ID
+        @param studentNo 学号
+        @param gender 性别
+        @param age 年龄
+        @param className 班级名称
+     -->
     <update id="updateById">
         UPDATE student SET
                            user_id= #{userId},
@@ -45,16 +77,36 @@
         WHERE id= #{id}
     </update>
 
+    <!--
+        根据ID删除学生记录
+        @param id 学生记录ID
+     -->
     <delete id="deleteById" parameterType="long">
         DELETE FROM student WHERE id=#{id}
     </delete>
 
+    <!--
+        根据用户ID查询学生信息
+        @param userId 用户ID
+        @return Student对象
+     -->
     <select id="findByUserId" parameterType="long" resultMap="StudentResultMap">
         SELECT * FROM student WHERE user_id = #{userId}
     </select>
+
+    <!--
+        根据ID查询学生信息
+        @param id 学生记录ID
+        @return Student对象
+     -->
     <select id="selectById" resultType="com.example.modules.system.entity.Student">
         SELECT * FROM student WHERE id = #{id}
     </select>
+
+    <!--
+        查询所有学生信息
+        @return Student对象列表
+     -->
     <select id="selectAll" resultType="com.example.modules.system.entity.Student">
         SELECT * FROM student
     </select>
