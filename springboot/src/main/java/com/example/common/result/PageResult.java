@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * 分页结果封装类
+ * 用于封装分页查询的结果数据，包括当前页信息、总记录数和数据列表
+ * @param <T> 泛型类型，数据列表中元素的类型
+ */
 @Data
 public class PageResult<T> {
     /**
@@ -26,6 +31,15 @@ public class PageResult<T> {
      */
     private List<T> records;
 
+    /**
+     * 创建分页结果对象的静态方法
+     * @param records 数据列表
+     * @param total 总记录数
+     * @param pageNum 当前页码
+     * @param pageSize 每页大小
+     * @param <T> 泛型类型
+     * @return PageResult<T> 分页结果对象
+     */
     public static <T> PageResult<T> of(List<T> records, Long total, Integer pageNum, Integer pageSize) {
         PageResult<T> result = new PageResult<>();
         result.setRecords(records);
