@@ -5,6 +5,10 @@
 
 <mapper namespace="com.example.modules.system.mapper.ScoreMapper">
 
+    <!--
+        定义Score实体类与数据库表的映射关系
+        将数据库字段映射到Score实体类的属性
+     -->
     <resultMap id="ScoreResultMap" type="com.example.modules.system.entity.Score">
         <id property="id" column="id"/>
         <result property="studentId" column="student_id"/>
@@ -12,19 +16,37 @@
         <result property="score" column="score"/>
     </resultMap>
 
+    <!--
+        根据ID查询成绩信息
+        @param id 成绩记录ID
+        @return Score对象
+     -->
     <select id="findById" resultMap="ScoreResultMap" parameterType="long">
         SELECT * FROM score WHERE id = #{id}
     </select>
 
+    <!--
+        查询所有成绩信息
+        @return Score对象列表
+     -->
     <select id="findAll" resultMap="ScoreResultMap">
         SELECT * FROM score
     </select>
 
+    <!--
+        插入新的成绩记录
+        @param score Score对象，包含学生ID、课程ID和成绩
+        @return 插入记录的ID
+     -->
     <insert id="insert" parameterType="com.example.modules.system.entity.Score" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO score (student_id, course_id, score)
         VALUES (#{studentId}, #{courseId}, #{score})
     </insert>
 
+    <!--
+        更新成绩记录
+        @param score Score对象，包含ID和更新后的信息
+     -->
     <update id="update" parameterType="com.example.modules.system.entity.Score">
         UPDATE score SET
                          student_id = #{studentId},
@@ -32,6 +54,14 @@
                          score = #{score}
         WHERE id = #{id}
     </update>
+
+    <!--
+        根据ID更新成绩记录
+        @param id 成绩记录ID
+        @param studentId 学生ID
+        @param courseId 课程ID
+        @param score 成绩
+     -->
     <update id="updateById">
         UPDATE score SET
                          student_id = #{studentId},
@@ -40,14 +70,28 @@
         WHERE id = #{id}
     </update>
 
+    <!--
+        根据ID删除成绩记录
+        @param id 成绩记录ID
+     -->
     <delete id="deleteById" parameterType="long">
         DELETE FROM score WHERE id = #{id}
     </delete>
 
+    <!--
+        根据学生ID查询成绩记录
+        @param studentId 学生ID
+        @return Score对象列表
+     -->
     <select id="findByStudentId" resultMap="ScoreResultMap" parameterType="long">
         SELECT * FROM score WHERE student_id = #{studentId}
     </select>
 
+    <!--
+        根据课程ID查询成绩记录
+        @param courseId 课程ID
+        @return Score对象列表
+     -->
     <select id="findByCourseId" resultMap="ScoreResultMap" parameterType="long">
         SELECT * FROM score WHERE course_id = #{courseId}
     </select>
