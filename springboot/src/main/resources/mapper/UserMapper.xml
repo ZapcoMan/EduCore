@@ -5,7 +5,14 @@
 <!-- 定义一个Mapper，命名空间为com.example.mapper.UserMapper -->
 <mapper namespace="com.example.modules.system.mapper.UserMapper">
 
-    <!-- 定义一个查询方法，id为selectAll，返回类型为com.example.entity.User -->
+    <!--
+        查询所有用户信息
+        根据提供的条件进行筛选，支持按用户名和姓名模糊查询
+        查询结果按ID降序排列
+        @param username 用户名（可选），用于模糊匹配
+        @param name 姓名（可选），用于模糊匹配
+        @return User对象列表
+     -->
     <select id="selectAll" resultType="com.example.modules.system.entity.User">
         <!-- 查询user表中的所有列 -->
         select * from `user`
@@ -20,7 +27,14 @@
         order by id desc
     </select>
 
-    <!-- 定义一个插入方法，id为insert -->
+    <!--
+        插入新的用户信息
+        @param username 用户名
+        @param password 密码
+        @param role 角色
+        @param name 姓名
+        @param avatar 头像
+     -->
     <insert id="insert">
         <!-- 向user表中插入数据 -->
         insert into `user` (username, password, role, name, avatar)
@@ -28,13 +42,27 @@
         values(#{username} , #{password}, #{role}, #{name}, #{avatar})
     </insert>
 
-    <!-- 定义一个更新方法，id为updateById -->
+    <!--
+        根据ID更新用户信息
+        @param id 用户ID
+        @param username 用户名
+        @param password 密码
+        @param role 角色
+        @param name 姓名
+        @param avatar 头像
+     -->
     <update id="updateById">
         <!-- 更新user表中的数据 -->
         update `user` set username = #{username}, password = #{password}, role = #{role}, name = #{name}, avatar = #{avatar}
         <!-- 根据id进行条件更新 -->
         where id = #{id}
     </update>
+
+    <!--
+        根据用户名更新密码
+        @param username 用户名
+        @param password 新密码
+     -->
     <update id="updatePassword">
         UPDATE user SET password = #{password} WHERE username = #{username}
     </update>
