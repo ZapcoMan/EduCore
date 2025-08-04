@@ -2,19 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.modules.system.mapper.CourseMapper">
+    <!--
+        根据课程ID查询课程信息
+        @param id 课程ID
+        @return Course 课程信息对象
+    -->
     <select id="findById" resultType="com.example.modules.system.entity.Course">
         SELECT * FROM course WHERE id = #{id}
     </select>
+
+    <!--
+        查询所有课程信息
+        @return List<Course> 课程信息列表
+    -->
     <select id="findAll" resultType="com.example.modules.system.entity.Course">
         SELECT *
         FROM course
     </select>
+
+    <!--
+        插入新的课程信息
+        @param course 课程信息对象
+        @return int 插入记录数
+    -->
     <insert id="insert" parameterType="com.example.modules.system.entity.Course">
         INSERT INTO course(name,teacher_id,description) VALUES(#{name},#{teacherId},#{description})
     </insert>
+
+    <!--
+        更新课程信息
+        @param course 课程信息对象
+        @return int 更新记录数
+    -->
     <update id="update" parameterType="com.example.modules.system.entity.Course">
         UPDATE course SET name=#{name},teacher_id=#{teacherId},description=#{description} WHERE id=#{id}
     </update>
+
+    <!--
+        根据课程ID删除课程信息
+        @param id 课程ID
+        @return int 删除记录数
+    -->
     <delete id="deleteById" parameterType="long">
         DELETE FROM course WHERE id=#{id}
     </delete>
