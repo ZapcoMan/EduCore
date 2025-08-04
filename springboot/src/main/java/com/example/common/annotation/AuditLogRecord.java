@@ -16,6 +16,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface AuditLogRecord {
+    /**
+     * 审计日志的操作类型
+     * @return 操作类型字符串，例如 "create", "update", "delete" 等
+     */
     String action();
+
+    /**
+     * 审计日志的资源名称
+     * @return 资源名称，默认为空字符串
+     */
     String resource() default "";
 }
